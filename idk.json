@@ -5,4 +5,11 @@
     "start_url": "./index.html",
     "display": "fullscreen",
     "background_color": "#000000",
+    "icons": [
+        {
+            "src": "images/icon-1280x1280.png",
+            "sizes": "1280X1280",
+            "type": "image/png"
+        },
+    ]
 }
