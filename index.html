@@ -16,43 +16,6 @@ if ("serviceWorker" in navigator) {
 }
 </script>
 <body>
-<script>
-const screens = ["left-2","left-1","center","right-1","right-2"];
-let currentScreen = "center";
-
-function showScreen(id) {
-  if (id === currentScreen) return;
-
-  const current = document.getElementById(currentScreen);
-  const next = document.getElementById(id);
-  const loading = document.getElementById("loading");
-
-  // 1. Loading画面を表示
-  loading.style.display = "flex";
-  loading.style.opacity = 1;
-
-  // 2. 少し待ってから画面切替
-  setTimeout(() => {
-    // 現在画面をフェードアウト
-    current.style.opacity = 0;
-    setTimeout(() => {
-      current.classList.remove("active");
-      current.style.opacity = 1; // 次回用にリセット
-
-      // 次の画面を表示
-      next.classList.add("active");
-
-      // Loadingをフェードアウト
-      loading.style.opacity = 0;
-      setTimeout(() => {
-        loading.style.display = "none";
-      }, 500); // CSSのtransition時間と同じ
-    }, 500);
-  }, 500); // Loading表示時間
-  currentScreen = id;
-}
-
-</script>
 <div id="app">
   <!-- コンテンツエリア -->
   <div id="content">
