@@ -18,23 +18,23 @@ if ("serviceWorker" in navigator) {
 <body>
 <script>
 const screens = ["left-2","left-1","center","right-1","right-2"]
-let currentScreen = "center";
-
+let currentScreen = "left-2";
 function showScreen(id) {
-  if (id === currentScreen) return; // 同じ画面なら無視
+  if (id === currentScreen) return;
 
   const current = document.getElementById(currentScreen);
   const next = document.getElementById(id);
 
+  // 配列上のインデックスで方向を判定
   const currentIndex = screens.indexOf(currentScreen);
   const nextIndex = screens.indexOf(id);
   const direction = nextIndex > currentIndex ? "left" : "right";
 
-  // 次の画面を準備（右 or 左の外に置く）
-  next.style.left = (direction === "left") ? "100%" : "-100%";
+  // 次の画面を準備
+  next.style.left = direction === "left" ? "100%" : "-100%";
   next.classList.add("active");
 
-  // 少し遅れてアニメーション開始
+  // アニメーション開始
   requestAnimationFrame(() => {
     current.classList.add(direction === "left" ? "slide-out-left" : "slide-out-right");
     next.style.left = "0";
@@ -43,7 +43,7 @@ function showScreen(id) {
   // アニメーション終了後に整理
   current.addEventListener("transitionend", function handler() {
     current.classList.remove("active", "slide-out-left", "slide-out-right");
-    current.style.left = "100%"; // 画面外に戻す
+    current.style.left = "100%"; // 初期位置に戻す
     current.removeEventListener("transitionend", handler);
   });
 
