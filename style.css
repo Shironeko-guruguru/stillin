@@ -14,3 +14,66 @@ html, body {
   -webkit-overflow-scrolling: touch; /* iOSで慣性スクロール */
   height: 100%;                      /* 必要に応じて高さ指定 */
 }
+
+/* ===== フッター配置 ===== */
+.game-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.85); /* 半透明背景 */
+}
+
+/* 各行を中央寄せ */
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 8px 0;
+}
+
+/* ===== ボタン共通 ===== */
+.btn {
+  border: none;
+  margin: 0 8px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 2px 3px rgba(0,0,0,0.4);
+  background: linear-gradient(180deg, #ff9a9e, #ff6a6a); /* ピンク系 */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+/* 押したときに沈む感じ */
+.btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+/* ===== 上段ボタン ===== */
+.btn.side {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%; /* 丸ボタン */
+  font-size: 14px;
+  background: linear-gradient(180deg, #42a5f5, #1e88e5); /* 青系 */
+}
+
+.btn.main {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%; /* 大きな丸ボタン */
+  font-size: 18px;
+  background: linear-gradient(180deg, #66bb6a, #43a047); /* 緑系 */
+}
+
+/* ===== 下段ボタン ===== */
+.btn.sub {
+  flex: 1;
+  height: 60px;
+  border-radius: 30px; /* 横長楕円 */
+  font-size: 16px;
+  background: linear-gradient(180deg, #ffca28, #f57c00); /* オレンジ系 */
+}
