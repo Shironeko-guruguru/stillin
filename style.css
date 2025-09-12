@@ -1,5 +1,16 @@
-body {
-    background-color: ffffff;
-    margin: 0;
-    color: 000000;
+html, body {
+  background-color: ffffff;
+  color: 000000;
+  overflow: hidden;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overscroll-behavior: none;
+}
+
+/* スクロールを許可するエリア */
+.scroll-area {
+  overflow-y: auto;                  /* 縦スクロール可能 */
+  -webkit-overflow-scrolling: touch; /* iOSで慣性スクロール */
+  height: 100%;                      /* 必要に応じて高さ指定 */
 }
