@@ -26,7 +26,7 @@ html, body {
   background: rgba(255, 255, 255, 0.85); /* 半透明背景 */
 }
 
-/* 各行を中央寄せ */
+/* 行のレイアウト */
 .row {
   display: flex;
   justify-content: center;
@@ -39,41 +39,37 @@ html, body {
   border: none;
   margin: 0 8px;
   font-weight: bold;
-  color: #fff;
-  text-shadow: 0 2px 3px rgba(0,0,0,0.4);
-  background: white;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+  color: #333; /* 文字は濃いグレー */
+  text-shadow: 0 1px 1px rgba(255,255,255,0.6);
+  background: linear-gradient(180deg, #ffffff, #e0e0e0); /* 白～グレーのグラデーション */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.25);
   transition: transform 0.1s, box-shadow 0.1s;
+  border-radius: 30px; /* 基本は楕円 */
 }
 
-/* 押したときに沈む感じ */
+/* 押したときの演出 */
 .btn:active {
   transform: scale(0.95);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+  box-shadow: 0 2px 3px rgba(0,0,0,0.25) inset;
 }
 
 /* ===== 上段ボタン ===== */
 .btn.side {
-  width: 70px;
-  height: 70px;
-  border-radius: 30%;
+  width: 100px;
+  height: 60px;
   font-size: 14px;
-  background: white;
 }
 
 .btn.main {
-  width: 110px;
-  height: 110px;
-  border-radius: 30%;
+  width: 160px;
+  height: 70px;
   font-size: 18px;
-  background: white;
+  font-weight: bold;
 }
 
 /* ===== 下段ボタン ===== */
 .btn.sub {
   flex: 1;
-  height: 60px;
-  border-radius: 30px; /* 横長楕円 */
+  height: 55px;
   font-size: 16px;
-  background: white;
 }
