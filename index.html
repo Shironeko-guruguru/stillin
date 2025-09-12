@@ -16,7 +16,38 @@ if ("serviceWorker" in navigator) {
 }
 </script>
 <body>
-<script src="script.js"></script>
+<script>
+let currentScreen = "cente";
+
+function showScreen(id) {
+  if (id === currentScreen) return; // 同じ画面なら無視
+
+  const current = document.getElementById(currentScreen);
+  const next = document.getElementById(id);
+
+  // 遷移方向を決定（例: 次の画面IDが大きいなら左スライド）
+  const direction = (id > currentScreen) ? "left" : "right";
+
+  // 次の画面を準備（右 or 左の外に置く）
+  next.style.left = (direction === "left") ? "100%" : "-100%";
+  next.classList.add("active");
+
+  // 少し遅れてアニメーション開始
+  requestAnimationFrame(() => {
+    current.classList.add(direction === "left" ? "slide-out-left" : "slide-out-right");
+    next.style.left = "0";
+  });
+
+  // アニメーション終了後に整理
+  current.addEventListener("transitionend", function handler() {
+    current.classList.remove("active", "slide-out-left", "slide-out-right");
+    current.style.left = "100%"; // 画面外に戻す
+    current.removeEventListener("transitionend", handler);
+  });
+
+  currentScreen = id;
+}
+</script>
 <div id="app">
   <!-- コンテンツエリア -->
   <div id="content">
