@@ -16,17 +16,27 @@ if ("serviceWorker" in navigator) {
 }
 </script>
 <body>
-<div class="game-footer">
-  <!-- 上段 -->
-  <div class="row top-row">
-    <button class="btn side">左</button>
-    <button class="btn main">中央</button>
-    <button class="btn side">右</button>
+<div id="app">
+  <!-- コンテンツエリア -->
+  <div id="content">
+    <div class="screen active" id="screen-training">育成画面</div>
+    <div class="screen" id="screen-race">レース画面</div>
+    <div class="screen" id="screen-shop">ショップ画面</div>
+    <div class="screen" id="screen-team">編成画面</div>
+    <div class="screen" id="screen-menu">メニュー画面</div>
   </div>
-  <!-- 下段 -->
-  <div class="row bottom-row">
-    <button class="btn sub">下1</button>
-    <button class="btn sub">下2</button>
+
+  <!-- フッターメニュー -->
+  <div class="game-footer">
+    <div class="row top-row">
+      <button class="btn side" onclick="showScreen('left-1')">left</button>
+      <button class="btn main" onclick="showScreen('center')">center</button>
+      <button class="btn side" onclick="showScreen('right-1')">right</button>
+    </div>
+    <div class="row bottom-row">
+      <button class="btn sub" onclick="showScreen('left-2')">left</button>
+      <button class="btn sub" onclick="showScreen('right-2')">right</button>
+    </div>
   </div>
 </div>
 </body>
