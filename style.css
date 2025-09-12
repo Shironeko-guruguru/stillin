@@ -41,7 +41,7 @@ html, body {
   font-weight: bold;
   color: #fff;
   text-shadow: 0 2px 3px rgba(0,0,0,0.4);
-  background: linear-gradient(180deg, #ff9a9e, #ff6a6a); /* ピンク系 */
+  background: white;
   box-shadow: 0 4px 8px rgba(0,0,0,0.4);
   transition: transform 0.1s, box-shadow 0.1s;
 }
