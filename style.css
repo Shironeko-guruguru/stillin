@@ -1,1 +1,25 @@
+body {
+    background-color: black;
+    margin: 0;
+}
 
+canvas {
+    background-color: gray;
+    position: absolute;
+    left: 50%;
+    margin-right: -50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media (min-aspect-ratio: 9/16) {
+    canvas {
+        height: 100%;
+    }
+}
+
+@media (max-aspect-ratio: 9/16) {
+    canvas {
+        width: 100%;
+    }
+}
