@@ -78,3 +78,20 @@ html, body {
   font-size: 28px;
   z-index: 10;
 }
+
+/* 全画面を想定 */
+#content {
+  padding-bottom: 180px; /* フッター分の余白 */
+}
+
+.screen {
+  display: none;          /* デフォルトは非表示 */
+  padding: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+/* 表示する画面 */
+.screen.active {
+  display: block;
+}
