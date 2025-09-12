@@ -17,38 +17,41 @@ if ("serviceWorker" in navigator) {
 </script>
 <body>
 <script>
-const screens = ["left-2","left-1","center","right-1","right-2"]
-let currentScreen = "left-2";
+const screens = ["left-2","left-1","center","right-1","right-2"];
+let currentScreen = "center";
+
 function showScreen(id) {
   if (id === currentScreen) return;
 
   const current = document.getElementById(currentScreen);
   const next = document.getElementById(id);
+  const loading = document.getElementById("loading");
 
-  // 配列上のインデックスで方向を判定
-  const currentIndex = screens.indexOf(currentScreen);
-  const nextIndex = screens.indexOf(id);
-  const direction = nextIndex > currentIndex ? "left" : "right";
+  // 1. Loading画面を表示
+  loading.style.display = "flex";
+  loading.style.opacity = 1;
 
-  // 次の画面を準備
-  next.style.left = direction === "left" ? "100%" : "-100%";
-  next.classList.add("active");
+  // 2. 少し待ってから画面切替
+  setTimeout(() => {
+    // 現在画面をフェードアウト
+    current.style.opacity = 0;
+    setTimeout(() => {
+      current.classList.remove("active");
+      current.style.opacity = 1; // 次回用にリセット
 
-  // アニメーション開始
-  requestAnimationFrame(() => {
-    current.classList.add(direction === "left" ? "slide-out-left" : "slide-out-right");
-    next.style.left = "0";
-  });
+      // 次の画面を表示
+      next.classList.add("active");
 
-  // アニメーション終了後に整理
-  current.addEventListener("transitionend", function handler() {
-    current.classList.remove("active", "slide-out-left", "slide-out-right");
-    current.style.left = "100%"; // 初期位置に戻す
-    current.removeEventListener("transitionend", handler);
-  });
-
+      // Loadingをフェードアウト
+      loading.style.opacity = 0;
+      setTimeout(() => {
+        loading.style.display = "none";
+      }, 500); // CSSのtransition時間と同じ
+    }, 500);
+  }, 500); // Loading表示時間
   currentScreen = id;
 }
+
 </script>
 <div id="app">
   <!-- コンテンツエリア -->
