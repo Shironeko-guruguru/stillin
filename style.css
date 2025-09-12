@@ -56,17 +56,17 @@ html, body {
 .btn.side {
   width: 70px;
   height: 70px;
-  border-radius: 50%; /* 丸ボタン */
+  border-radius: 30%;
   font-size: 14px;
-  background: linear-gradient(180deg, #42a5f5, #1e88e5); /* 青系 */
+  background: white;
 }
 
 .btn.main {
   width: 110px;
   height: 110px;
-  border-radius: 50%; /* 大きな丸ボタン */
+  border-radius: 30%;
   font-size: 18px;
-  background: linear-gradient(180deg, #66bb6a, #43a047); /* 緑系 */
+  background: white;
 }
 
 /* ===== 下段ボタン ===== */
@@ -75,5 +75,5 @@ html, body {
   height: 60px;
   border-radius: 30px; /* 横長楕円 */
   font-size: 16px;
-  background: linear-gradient(180deg, #ffca28, #f57c00); /* オレンジ系 */
+  background: white;
 }
