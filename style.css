@@ -23,10 +23,10 @@ html, body {
   width: 100%;
   padding: 12px;
   box-sizing: border-box;
-  background: rgba(255, 255, 255, 0.85); /* 半透明背景 */
+  background: rgba(255, 255, 255, 0.85); /* 半透明背景で浮かせる感じ */
 }
 
-/* 行のレイアウト */
+/* 行 */
 .row {
   display: flex;
   justify-content: center;
@@ -39,15 +39,15 @@ html, body {
   border: none;
   margin: 0 8px;
   font-weight: bold;
-  color: #333; /* 文字は濃いグレー */
-  text-shadow: 0 1px 1px rgba(255,255,255,0.6);
-  background: linear-gradient(180deg, #ffffff, #e0e0e0); /* 白～グレーのグラデーション */
+  color: #333;
+  background: linear-gradient(180deg, #ffffff, #e0e0e0); /* 白～薄グレー */
   box-shadow: 0 4px 6px rgba(0,0,0,0.25);
   transition: transform 0.1s, box-shadow 0.1s;
-  border-radius: 30px; /* 基本は楕円 */
+  border-radius: 30px; /* 楕円 */
+  padding: 0 16px; /* 文字が窮屈にならないよう余白 */
 }
 
-/* 押したときの演出 */
+/* 押したときのアニメーション */
 .btn:active {
   transform: scale(0.95);
   box-shadow: 0 2px 3px rgba(0,0,0,0.25) inset;
