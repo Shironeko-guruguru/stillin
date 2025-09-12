@@ -17,6 +17,7 @@ if ("serviceWorker" in navigator) {
 </script>
 <body>
 <script>
+const screens = ["left-2","left-1","center","right-1","right-2"]
 let currentScreen = "center";
 
 function showScreen(id) {
@@ -25,8 +26,9 @@ function showScreen(id) {
   const current = document.getElementById(currentScreen);
   const next = document.getElementById(id);
 
-  // 遷移方向を決定（例: 次の画面IDが大きいなら左スライド）
-  const direction = (id > currentScreen) ? "left" : "right";
+  const currentIndex = screens.indexOf(currentScreen);
+  const nextIndex = screens.indexOf(id);
+  const direction = nextIndex > currentIndex ? "left" : "right";
 
   // 次の画面を準備（右 or 左の外に置く）
   next.style.left = (direction === "left") ? "100%" : "-100%";
