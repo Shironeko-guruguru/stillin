@@ -22,22 +22,39 @@ if ("serviceWorker" in navigator) {
   </main>
 <script>
 let lines = [];
-let currentIndex = -1;
+let currentIndex = 0;
 
-// セリフファイルを読み込む
+const box = document.getElementById("serifBox");
+const startBtn = document.getElementById("startBtn");
+
+// セリフを読み込む
 fetch("lines.txt")
   .then(res => res.text())
   .then(text => {
     lines = text.split(/\r?\n/).filter(line => line.trim() !== "");
   });
 
-const box = document.getElementById("serifBox");
-
-// タップで次のセリフへ
-box.addEventListener("click", () => {
+// 開始ボタンが押されたら最初のセリフを表示
+startBtn.addEventListener("click", () => {
   if (lines.length === 0) return;
-  currentIndex = (currentIndex + 1) % lines.length; // ループ表示
+  currentIndex = 0;
   box.textContent = lines[currentIndex];
+  box.style.display = "block";
+  startBtn.style.display = "none";
+});
+
+// ボックスをタップすると次のセリフへ
+box.addEventListener("click", () => {
+  currentIndex++;
+  if (currentIndex < lines.length) {
+    box.textContent = lines[currentIndex];
+  } else {
+    // 最後のセリフを超えたら非表示
+    box.style.opacity = "0";
+    setTimeout(() => {
+      box.style.display = "none";
+    }, 300);
+  }
 });
 </script>
 <script>
