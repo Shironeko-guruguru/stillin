@@ -77,8 +77,8 @@ html, body {
 
 /*=====トレーニング時=====*/
 .btn.small {
-  width: 70px;
-  height: 70px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   outline: none;
   transition: all 0.1s ease-in-out;
