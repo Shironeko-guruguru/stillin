@@ -79,19 +79,39 @@ html, body {
   z-index: 10;
 }
 
-/* 全画面を想定 */
 #content {
-  padding-bottom: 180px; /* フッター分の余白 */
+  position: relative;
+  overflow: hidden;
+  height: 70vh;
 }
 
 .screen {
-  display: none;          /* デフォルトは非表示 */
-  padding: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 24px;
-  text-align: center;
+  background: #fafafa;
+  transition: opacity 0.3s ease;
 }
 
-/* 表示する画面 */
 .screen.active {
-  display: block;
+  opacity: 1;
+  z-index: 1;
+}
+
+#loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: #333;
+  z-index: 10;
+  transform-origin: left center; /* 左端から拡大 */
+  transition: width 0.5s ease;
 }
