@@ -50,7 +50,6 @@ if ("serviceWorker" in navigator) {
 function showScreen(id) {
   document.querySelectorAll(".screen").forEach(el => {
     el.classList.remove("active");
-    button.classList.remove('activated');
   });
   document.getElementById(id).classList.add("active");
 }
