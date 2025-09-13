@@ -40,7 +40,8 @@ html, body {
   margin: 0 8px;
   font-weight: bold;
   color: #333;
-  background: linear-gradient(180deg, #ffffff, #e0e0e0); /* 白～薄グレー */
+  border: solid 0.1px;
+  background: white;
   box-shadow: 0 4px 6px rgba(0,0,0,0.25);
   transition: transform 0.1s, box-shadow 0.1s;
   border-radius: 30px; /* 楕円 */
