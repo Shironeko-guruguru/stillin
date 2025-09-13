@@ -112,7 +112,7 @@ function updateStatus() {
   } if (100 > stm) {
     statusText = 'E';
   }
-  stmstatus.textContent = `${魔力量} ${statusText} ${stm}/${1000}`;
+  stmstatus.textContent = `${"魔力量"} ${statusText} ${stm}/${1000}`;
 
   if (spd >= 1000) {
     statusText = 'U';
@@ -141,7 +141,7 @@ function updateStatus() {
   } if (100 > spd) {
     statusText = 'E';
   }
-  spdstatus.textContent = `${詠唱速度} ${statusText} ${spd}/${1000}`;
+  spdstatus.textContent = `${"詠唱速度"} ${statusText} ${spd}/${1000}`;
 
   if (ctrl >= 1000) {
     statusText = 'U';
@@ -170,7 +170,7 @@ function updateStatus() {
   } if (100 > ctrl) {
     statusText = 'E';
   }
-  ctrlstatus.textContent = `${魔力操作} ${statusText} ${ctrl}/${1000}`;
+  ctrlstatus.textContent = `${"魔力操作"} ${statusText} ${ctrl}/${1000}`;
 
   if (def >= 1000) {
     statusText = 'U';
@@ -199,7 +199,7 @@ function updateStatus() {
   } if (100 > def) {
     statusText = 'E';
   }
-  defstatus.textContent = `${魔力耐性} ${statusText} ${def}/${1000}`;
+  defstatus.textContent = `${"魔力耐性"} ${statusText} ${def}/${1000}`;
 }
 
 updateStatus();
