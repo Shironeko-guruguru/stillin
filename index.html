@@ -16,29 +16,6 @@ if ("serviceWorker" in navigator) {
 } 
 </script>
 <body>
-<script>
-function showScreen(id) {
-  document.querySelectorAll(".screen").forEach(el => {
-    el.classList.remove("active");
-  });
-  document.getElementById(id).classList.add("active");
-}
-showScreen("ikusei-home");
-
-const smallButtons = document.querySelectorAll('.btn.small');
-smallButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    if (button.classList.contains('activated')) {
-      showScreen("ikusei-home");
-      button.classList.remove('activated');
-    } else {
-      smallButtons.forEach(btn => btn.classList.remove('activated'));
-      button.classList.add('activated');
-    }
-  });
-});
-
-</script>
 <div id="app"> 
   <div id="content"> 
     <div class="screen active" id="ikusei-home">
@@ -69,5 +46,28 @@ smallButtons.forEach(button => {
     </div>
   </div> 
 </div>
+<script>
+function showScreen(id) {
+  document.querySelectorAll(".screen").forEach(el => {
+    el.classList.remove("active");
+  });
+  document.getElementById(id).classList.add("active");
+}
+showScreen("ikusei-home");
+
+const smallButtons = document.querySelectorAll('.btn.small');
+smallButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    if (button.classList.contains('activated')) {
+      showScreen("ikusei-home");
+      button.classList.remove('activated');
+    } else {
+      smallButtons.forEach(btn => btn.classList.remove('activated'));
+      button.classList.add('activated');
+    }
+  });
+});
+
+</script>
 </body>
 </html>
