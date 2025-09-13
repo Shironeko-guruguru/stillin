@@ -1,6 +1,6 @@
 html, body {
   font-family: system-ui, "Noto Sans JP", sans-serif; 
-  background-color: #f3f3f3; 
+  background-color: #ffffff; 
   color: #000000; 
   overflow: hidden; 
   height: 100%; 
@@ -77,15 +77,6 @@ html, body {
 /* 全画面を想定 */
 #content {
   padding-bottom: 180px; /* フッター分の余白 */
-}
-
-.content-wrapper {
-  margin: 0 auto;
-  max-width: 480px;
-  background-color: #ffffff;
-  height: 100%;
-  padding: 20px;
-  box-sizing: border-box; 
 }
 
 .screen {
