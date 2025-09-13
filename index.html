@@ -13,36 +13,21 @@
 <script> 
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("/service-worker.js");
-} </script>
+} 
+</script>
 <body>
 <script>
-const screens = ["left-2","left-1","center","right-1","right-2"];
-let currentScreen = "left-2";
 function showScreen(id) {
-  if (!id || id === currentScreen) return;
-const loading = document.getElementById("loading");
-const cur = document.getElementById(currentScreen);
-const next = document.getElementById(id);
-  
-  loading.style.transition = "none";
-  loading.style.clipPath = "circle(150% at 50% 50%)"; 
-  loading.style.display = "block"; 
-  loading.style.pointerEvents = "auto"; 
-  loading.getBoundingClientRect(); 
-  cur.classList.remove("active"); 
-  next.classList.add("active"); 
-  loading.style.transition = "clip-path 0.6s cubic-bezier(.2,.9,.2,1)"; 
-  
-  requestAnimationFrame(() => { 
-    loading.style.clipPath = "circle(0% at 50% 50%)"; 
-  }); 
-  function onEnd(ev) { 
-    if (ev.propertyName.indexOf("clip-path") === -1) return; 
-    loading.style.display = "none"; loading.style.pointerEvents = "none"; 
-    loading.removeEventListener("transitionend", onEnd); 
-  } 
-  loading.addEventListener("transitionend", onEnd); currentScreen = id; 
-} 
+  // すべて非表示に
+  document.querySelectorAll(".screen").forEach(el => {
+    el.classList.remove("active");
+  });
+
+  // 指定画面だけ表示
+  document.getElementById(id).classList.add("active");
+}
+showScreen("center");
+
 </script>
 <div id="app"> 
   <!-- コンテンツエリア --> 
