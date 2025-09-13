@@ -26,33 +26,37 @@ function showScreen(id) {
   const cur = document.getElementById(currentScreen);
   const next = document.getElementById(id);
 
-  // カバーを表示
   loading.style.transition = "none";
-  loading.style.clipPath = "circle(150% at 50% 50%)";
+  loading.style.clipPath = "circle(150% at 50% 50%)"; // 全画面覆う
   loading.style.display = "block";
-  loading.style.pointerEvents = "auto";   // ← 期間中は操作をブロック
+  loading.style.pointerEvents = "auto";
 
-  // 強制リフロー
-  loading.getBoundingClientRect();
+  loading.getBoundingClientRect(); // 強制リフロー
 
-  // 裏で画面切替
-  cur.classList.remove("active");
-  next.classList.add("active");
-
-  // アニメーション開始
+  // 1段階目：外→中心に塗りつぶし
   loading.style.transition = "clip-path 0.6s cubic-bezier(.2,.9,.2,1)";
   requestAnimationFrame(() => {
     loading.style.clipPath = "circle(0% at 50% 50%)";
   });
 
-  // アニメーション終了後に非表示
-  function onEnd(ev) {
+  // 2段階目：少し待ってから中心→外に空白を広げる
+  setTimeout(() => {
+    // 画面切替
+    cur.classList.remove("active");
+    next.classList.add("active");
+
+    // 中心から外に空白を広げる
+    loading.style.transition = "clip-path 0.6s cubic-bezier(.2,.9,.2,1)";
+    loading.style.clipPath = "circle(150% at 50% 50%)";
+  }, 700); // 1段階目の終了後少し待つ
+
+  // 完了後に非表示
+  loading.addEventListener("transitionend", function onEnd(ev) {
     if (ev.propertyName.indexOf("clip-path") === -1) return;
     loading.style.display = "none";
-    loading.style.pointerEvents = "none";   // ← 邪魔しないよう戻す
+    loading.style.pointerEvents = "none";
     loading.removeEventListener("transitionend", onEnd);
-  }
-  loading.addEventListener("transitionend", onEnd);
+  });
 
   currentScreen = id;
 }
