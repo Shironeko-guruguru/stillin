@@ -112,9 +112,9 @@ html, body {
   background: #357ab8;
 }
 
-.box {
+.serif-box {
   position: fixed;
-  bottom: 157px;          /* フッターの高さぶんだけ上にずらす */
+  bottom: 70px;              /* footerの高さに合わせて調整 */
   left: 50%;
   transform: translateX(-50%);
   max-width: 90%;
@@ -126,5 +126,6 @@ html, body {
   cursor: pointer;
   user-select: none;
   transition: opacity 0.3s;
-  box-shadow: 0 -2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  z-index: 1000; /* フッターより前面に出す */
 }
