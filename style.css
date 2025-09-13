@@ -1,7 +1,7 @@
 html, body {
   font-family: system-ui, "Noto Sans JP", sans-serif;
-  background-color: ffffff;
-  color: 000000;
+  background-color: #ffffff;
+  color: #000000;
   overflow: hidden;
   height: 100%;
   margin: 0;
@@ -9,11 +9,10 @@ html, body {
   overscroll-behavior: none;
 }
 
-/* スクロールを許可するエリア */
-.scroll-area {
-  overflow-y: auto;                  /* 縦スクロール可能 */
-  -webkit-overflow-scrolling: touch; /* iOSで慣性スクロール */
-  height: 100%;                      /* 必要に応じて高さ指定 */
+#app {
+  position: relative; /* ← loading の重なり安定化 */
+  width: 100%;
+  height: 100%;
 }
 
 /* ===== フッター配置 ===== */
@@ -24,10 +23,9 @@ html, body {
   width: 100%;
   padding: 12px;
   box-sizing: border-box;
-  background: rgba(255, 255, 255, 0.85); /* 半透明背景で浮かせる感じ */
+  background: rgba(255, 255, 255, 0.85);
 }
 
-/* 行 */
 .row {
   display: flex;
   justify-content: center;
@@ -35,7 +33,6 @@ html, body {
   margin: 8px 0;
 }
 
-/* ===== ボタン共通 ===== */
 .btn {
   border: none;
   margin: 0 8px;
@@ -44,16 +41,14 @@ html, body {
   border: solid 0.1px;
   background: white;
   transition: transform 0.1s;
-  border-radius: 30px; /* 楕円 */
-  padding: 0 16px; /* 文字が窮屈にならないよう余白 */
+  border-radius: 30px;
+  padding: 0 16px;
 }
 
-/* 押したときのアニメーション */
 .btn:active {
   transform: scale(0.95);
 }
 
-/* ===== 上段ボタン ===== */
 .btn.side {
   width: 100px;
   height: 60px;
@@ -67,16 +62,13 @@ html, body {
   font-weight: bold;
 }
 
-/* ===== 下段ボタン ===== */
 .btn.sub {
   flex: 1;
   height: 55px;
   font-size: 16px;
 }
 
-  /* メインのコンテンツ領域（上に覆いを出す） */
-
- #content {
+#content {
   position: relative;
   width: 100%;
   height: 100vh;
@@ -88,28 +80,26 @@ html, body {
   top: 0; left: 0;
   width: 100%;
   height: 100%;
-  display: none;           /* ← デフォルトは非表示 */
+  display: none;
   justify-content: center;
   align-items: center;
   font-size: 28px;
-  background: #f0f0f0;      /* デモ用背景色 */
+  background: #f0f0f0;
 }
 
 .screen.active {
-  display: flex;             /* ← アクティブな画面だけ表示 */
+  display: flex;
   z-index: 1;
 }
-
-
 
 #loading {
   position: absolute;
   top:0; left:0;
   width:100%; height:100%;
-  background: #111;            /* 塗りつぶし色 */
+  background: #111;
   z-index: 50;
   display: none;
-  clip-path: circle(0% at 50% 50%); /* 初期：中心だけ塗りつぶし */
+  clip-path: circle(0% at 50% 50%);
   transition: clip-path 1s cubic-bezier(.2,.9,.2,1);
   will-change: clip-path;
   pointer-events: none;
