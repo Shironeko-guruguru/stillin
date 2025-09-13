@@ -37,6 +37,7 @@ html, body {
 
 /* ===== ボタン共通 ===== */
 .btn {
+  border: none;
   margin: 0 8px;
   font-weight: bold;
   color: #333;
