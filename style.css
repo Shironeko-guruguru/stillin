@@ -41,7 +41,7 @@ html, body {
   font-weight: bold;
   color: #333;
   background: #ffffff
-  transition: transform 0.5s,
+  transition: transform 0.5s;
   border-radius: 30px; /* 楕円 */
   padding: 0 16px; /* 文字が窮屈にならないよう余白 */
   max-width: 232px;
