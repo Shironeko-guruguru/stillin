@@ -17,9 +17,8 @@ if ("serviceWorker" in navigator) {
 </script>
 <body>
   <main class="chat">
-    <div id="serifBox" class="box">
-      タップして開始
-    </div>
+    <button id="startBtn" class="start-btn">開始</button>
+    <div id="serifBox" class="box" style="display:none;"></div>
   </main>
 <script>
 let lines = [];
