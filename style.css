@@ -75,41 +75,40 @@ html, body {
 }
 
   /* メインのコンテンツ領域（上に覆いを出す） */
-  #content {
-    position: relative;
-    height: 70vh;            /* 好きな高さに調整 */
-    overflow: hidden;
-    background: #f7f7f7;
-  }
 
-  /* 各画面 */
-  .screen {
-    position: absolute;
-    top:0; left:0;
-    width:100%; height:100%;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    font-size: 28px;
-    color: #222;
-    transition: opacity 0.2s;
-  }
-  .screen.active {
-    display: flex;
-    opacity: 1;
-    z-index: 1;
-  }
+ #content {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
 
-  /* Loading カバー（円でマスク） */
+.screen {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  transition: opacity 0.2s;
+}
+
+.screen.active {
+  display: flex;
+  opacity: 1;
+  z-index: 1;
+}
+
 #loading {
   position: absolute;
   top:0; left:0;
   width:100%; height:100%;
-  background: #111;            /* 塗りつぶし色 */
+  background: #111;
   z-index: 50;
   display: none;
-  clip-path: circle(150% at 50% 50%);
-  transition: clip-path 0.6s cubic-bezier(.2,.9,.2,1);
+  clip-path: circle(150% at 50% 50%); /* 初期は外側塗りつぶし */
+  transition: clip-path 1s cubic-bezier(.2,.9,.2,1);
   will-change: clip-path;
   pointer-events: none;
 }
