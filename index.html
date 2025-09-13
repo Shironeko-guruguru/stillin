@@ -6,17 +6,14 @@
   <meta name="theme-color" content="#000000">
   <title>still in...</title>
 
-  <!-- PWA関連 -->
   <link rel="manifest" href="idk.json">
   <link rel="icon" href="./images/icon-1280x1280.png" sizes="1028x1028">
   <link rel="apple-touch-icon" href="./images/icon-1280x1280.png" sizes="1028x1028">
-
-  <!-- スタイルシート読み込み -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <script>
-  let currentScreen = "left-1"; // ← 初期表示に合わせた
+  let currentScreen = "left-1"; // 初期画面に合わせる
 
   function showScreen(id) {
     if (!id || id === currentScreen) return;
@@ -25,43 +22,47 @@
     const cur = document.getElementById(currentScreen);
     const next = document.getElementById(id);
 
-    // loading 初期化
+    // --- 初期化 ---
     loading.style.transition = "none";
     loading.style.clipPath = "circle(0% at 50% 50%)";
     loading.style.display = "block";
     loading.style.pointerEvents = "auto";
+
     loading.getBoundingClientRect(); // 強制リフロー
 
-    // ①中心→外へ
-    loading.style.transition = "clip-path 1s cubic-bezier(.2,.9,.2,1)";
-    loading.style.clipPath = "circle(150% at 50% 50%)";
+    requestAnimationFrame(() => {
+      // ①中心→外
+      loading.style.transition = "clip-path 1s cubic-bezier(.2,.9,.2,1)";
+      loading.style.clipPath = "circle(150% at 50% 50%)";
+    });
 
     function onExpandEnd(e) {
       if (e.propertyName !== "clip-path") return;
+      loading.removeEventListener("transitionend", onExpandEnd);
 
       // ②画面切り替え
       cur.classList.remove("active");
       next.classList.add("active");
 
-      // ③外→中心へ
-      loading.removeEventListener("transitionend", onExpandEnd);
-      loading.addEventListener("transitionend", onCollapseEnd);
+      // 少し時間をおいて外→中心
+      requestAnimationFrame(() => {
+        loading.style.transition = "clip-path 1s cubic-bezier(.2,.9,.2,1)";
+        loading.style.clipPath = "circle(0% at 50% 50%)";
+      });
 
-      loading.style.transition = "clip-path 1s cubic-bezier(.2,.9,.2,1)";
-      loading.style.clipPath = "circle(0% at 50% 50%)";
+      loading.addEventListener("transitionend", onCollapseEnd);
     }
 
     function onCollapseEnd(e) {
       if (e.propertyName !== "clip-path") return;
+      loading.removeEventListener("transitionend", onCollapseEnd);
 
-      // ④完了
+      // 完全終了
       loading.style.display = "none";
       loading.style.pointerEvents = "none";
-      loading.removeEventListener("transitionend", onCollapseEnd);
     }
 
     loading.addEventListener("transitionend", onExpandEnd);
-
     currentScreen = id;
   }
 </script>
