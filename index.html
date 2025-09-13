@@ -44,6 +44,7 @@ function showScreen(id) {
   setTimeout(() => {
     cur.classList.remove("active");
     next.classList.add("active");
+    setTimeout(()=>cur.classList.remove("active"), 1000)
 
     loading.style.transition = "clip-path 1s cubic-bezier(.2,.9,.2,1)";
     loading.style.clipPath = "circle(0% at 50% 50%)"; // 中心に収縮
