@@ -17,18 +17,29 @@ if ("serviceWorker" in navigator) {
 </script>
 <body>
 <script>
+let currentScreen = "screen-training";
+
 function showScreen(id) {
-  // すべて非表示に
-  document.querySelectorAll(".screen").forEach(el => {
-    el.classList.remove("active");
-  });
+  if (id === currentScreen) return;
 
-  // 指定画面だけ表示
-  document.getElementById(id).classList.add("active");
+  const current = document.getElementById(currentScreen);
+  const next = document.getElementById(id);
+  const loading = document.getElementById("loading");
+
+  // 1. Loadingを左から右に広げる
+  loading.style.width = "100%";
+
+  // 2. 半分待ってから画面切り替え
+  setTimeout(() => {
+    current.classList.remove("active");
+    next.classList.add("active");
+
+    // 3. Loadingを縮小させる（消す）
+    loading.style.width = "0%";
+  }, 500); // CSSのtransitionと合わせる
+
+  currentScreen = id;
 }
-
-// 初期表示（育成画面を出す）
-showScreen("screen-training");
 </script>
 <div id="app">
   <!-- コンテンツエリア -->
