@@ -9,9 +9,10 @@ html, body {
   overscroll-behavior: none;
 }
 
-#app {
-  position: relative; /* ← loading の重なり安定化 */
-  width: 100%;
+/* スクロール許可する領域 */
+.scroll-area {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   height: 100%;
 }
 
@@ -26,6 +27,7 @@ html, body {
   background: rgba(255, 255, 255, 0.85);
 }
 
+/* 行 */
 .row {
   display: flex;
   justify-content: center;
@@ -33,6 +35,7 @@ html, body {
   margin: 8px 0;
 }
 
+/* ===== ボタン共通 ===== */
 .btn {
   border: none;
   margin: 0 8px;
@@ -68,6 +71,7 @@ html, body {
   font-size: 16px;
 }
 
+/* ===== コンテンツエリア ===== */
 #content {
   position: relative;
   width: 100%;
@@ -92,15 +96,16 @@ html, body {
   z-index: 1;
 }
 
+/* ===== ローディング用黒覆い ===== */
 #loading {
   position: absolute;
   top:0; left:0;
   width:100%; height:100%;
   background: #111;
   z-index: 50;
-  display: none;
-  clip-path: circle(0% at 50% 50%);
-  transition: clip-path 1s cubic-bezier(.2,.9,.2,1);
-  will-change: clip-path;
   pointer-events: none;
+  clip-path: circle(150% at 50% 50%); /* 最初：外側に黒 */
+  opacity: 0;
+  transition: clip-path 1s cubic-bezier(.4,.0,.2,1),
+              opacity 0.3s linear;
 }
