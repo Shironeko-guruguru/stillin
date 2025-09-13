@@ -26,34 +26,34 @@ function showScreen(id) {
   const cur = document.getElementById(currentScreen);
   const next = document.getElementById(id);
 
-  // 初期状態：中心塗りつぶし
+  // --- 初期状態：中心だけ塗りつぶし ---
   loading.style.transition = "none";
-  loading.style.clipPath = "circle(0% at 50% 50%)"; // 中心だけ塗りつぶし
+  loading.style.clipPath = "circle(0% at 50% 50%)";
   loading.style.display = "block";
   loading.style.pointerEvents = "auto";
 
   loading.getBoundingClientRect(); // 強制リフロー
 
-  // 1段階目：中心→外に塗りつぶしを広げる
+  // --- ①中心→外に塗りつぶし ---
   loading.style.transition = "clip-path 1s cubic-bezier(.2,.9,.2,1)";
   requestAnimationFrame(() => {
     loading.style.clipPath = "circle(150% at 50% 50%)";
   });
 
-  // 2段階目：少し待って画面切替 & 外→中心に収縮
-setTimeout(() => {
-  next.classList.add("active"); // 先に次を表示
-  // 1秒後に古い画面を非表示
+  // --- ②少し待って画面切り替え & 外→中心に空白 ---
   setTimeout(() => {
-    cur.classList.remove("active");
-  }, 1000);
+    next.classList.add("active");
 
-  // 外→中心に収縮
-  loading.style.transition = "clip-path 1s cubic-bezier(.2,.9,.2,1)";
-  loading.style.clipPath = "circle(0% at 50% 50%)";
-}, 1200);
+    // 旧画面を後で非表示に
+    setTimeout(() => {
+      cur.classList.remove("active");
+    }, 1000);
 
-  // 完了後に非表示
+    loading.style.transition = "clip-path 1s cubic-bezier(.2,.9,.2,1)";
+    loading.style.clipPath = "circle(0% at 50% 50%)";
+  }, 1200);
+
+  // --- ③アニメ完了後に loading を消す ---
   loading.addEventListener("transitionend", function onEnd(ev) {
     if (ev.propertyName.indexOf("clip-path") === -1) return;
     loading.style.display = "none";
