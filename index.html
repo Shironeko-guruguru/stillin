@@ -1,7 +1,8 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html> 
+<html lang="ja"> 
+<head> 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#000000">
 <title>still in...</title>
 <link rel="manifest" href="idk.json">
@@ -9,32 +10,62 @@
 <link rel="icon" href="./images/icon-1280x1280.png" sizes="1028x1028">
 <link rel="apple-touch-icon" href="./images/icon-1280x1280.png" sizes="1028x1028">
 </head>
-<script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/service-worker.js");
-  }
-</script>
+<script> 
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/service-worker.js");
+} </script>
 <body>
-  <div id="content">
-    <div id="screen1" class="screen active">画面1</div>
-    <div id="screen2" class="screen">画面2</div>
-  </div>
-
-  <div class="game-footer">
-    <div class="row">
-      <button class="btn side" onclick="changeScreen('screen1')">左</button>
-      <button class="btn main" onclick="changeScreen('screen2')">中央</button>
-      <button class="btn side" onclick="changeScreen('screen1')">右</button>
-    </div>
-    <div class="row">
-      <button class="btn sub">下1</button>
-      <button class="btn sub">下2</button>
-    </div>
-  </div>
-
-  <!-- ローディング用の覆い -->
-  <div id="loading"></div>
-
-  <script src="script.js"></script>
+<script>
+const screens = ["left-2","left-1","center","right-1","right-2"];
+let currentScreen = "left-2";
+function showScreen(id) {
+  if (!id || id === currentScreen) return;
+const loading = document.getElementById("loading");
+const cur = document.getElementById(currentScreen);
+const next = document.getElementById(id);
+  
+  loading.style.transition = "none";
+  loading.style.clipPath = "circle(150% at 50% 50%)"; 
+  loading.style.display = "block"; 
+  loading.style.pointerEvents = "auto"; 
+  loading.getBoundingClientRect(); 
+  cur.classList.remove("active"); 
+  next.classList.add("active"); 
+  loading.style.transition = "clip-path 0.6s cubic-bezier(.2,.9,.2,1)"; 
+  
+  requestAnimationFrame(() => { 
+    loading.style.clipPath = "circle(0% at 50% 50%)"; 
+  }); 
+  function onEnd(ev) { 
+    if (ev.propertyName.indexOf("clip-path") === -1) return; 
+    loading.style.display = "none"; loading.style.pointerEvents = "none"; 
+    loading.removeEventListener("transitionend", onEnd); 
+  } 
+  loading.addEventListener("transitionend", onEnd); currentScreen = id; 
+} 
+</script>
+<div id="app"> 
+  <!-- コンテンツエリア --> 
+  <div id="content"> 
+    <div class="screen active" id="left-1">left-1</div> 
+    <div class="screen" id="center">center</div> 
+    <div class="screen" id="right-1">right-1</div> 
+    <div class="screen" id="left-2">left-2</div> 
+    <div class="screen" id="right-2">right-2</div> 
+  </div> 
+  <div id="loading"></div> 
+  <!-- フッターメニュー --> 
+  <div class="game-footer"> 
+    <div class="row top-row"> 
+      <button class="btn side" onclick="showScreen('left-1')">left</button> 
+      <button class="btn main" onclick="showScreen('center')">center</button> 
+      <button class="btn side" onclick="showScreen('right-1')">right</button> 
+    </div> 
+    <div class="row bottom-row"> 
+      <button class="btn sub" onclick="showScreen('left-2')">left</button> 
+      <button class="btn sub" onclick="showScreen('right-2')">right</button> 
+    </div> 
+  </div> 
+</div> 
 </body>
 </html>
