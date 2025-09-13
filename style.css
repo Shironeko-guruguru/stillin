@@ -84,7 +84,7 @@ html, body {
 }
 
 .btn.small.activated {
-  transform: translateY(-5px);
+  transform: translateY(-20px);
 }
 
 /* 全画面を想定 */
