@@ -33,22 +33,20 @@ function showScreen(id) {
 
   loading.getBoundingClientRect(); // 強制リフロー
 
-  // 1段階目：外→中心に塗りつぶし
-  loading.style.transition = "clip-path 0.6s cubic-bezier(.2,.9,.2,1)";
-  requestAnimationFrame(() => {
-    loading.style.clipPath = "circle(0% at 50% 50%)";
-  });
+  // 1段階目：外→中心
+loading.style.transition = "clip-path 1s cubic-bezier(.2,.9,.2,1)"; // 0.6s → 1s に延長
+requestAnimationFrame(() => {
+  loading.style.clipPath = "circle(0% at 50% 50%)";
+});
 
-  // 2段階目：少し待ってから中心→外に空白を広げる
-  setTimeout(() => {
-    // 画面切替
-    cur.classList.remove("active");
-    next.classList.add("active");
+// 2段階目：中心→外
+setTimeout(() => {
+  cur.classList.remove("active");
+  next.classList.add("active");
 
-    // 中心から外に空白を広げる
-    loading.style.transition = "clip-path 0.6s cubic-bezier(.2,.9,.2,1)";
-    loading.style.clipPath = "circle(150% at 50% 50%)";
-  }, 700); // 1段階目の終了後少し待つ
+  loading.style.transition = "clip-path 1s cubic-bezier(.2,.9,.2,1)"; // ここも延長
+  loading.style.clipPath = "circle(150% at 50% 50%)";
+}, 1000); // 1段階目のアニメーション時間に合わせてタイミングを調整
 
   // 完了後に非表示
   loading.addEventListener("transitionend", function onEnd(ev) {
