@@ -103,3 +103,19 @@ html, body {
 .screen.active {
   display: block;
 }
+
+.top-left-list {
+    position: fixed; /* 画面に対して位置を固定 */
+    top: 0;          /* 画面の上端から0pxの位置 */
+    left: 0;         /* 画面の左端から0pxの位置 */
+    margin: 10px;    /* 画面の端から少し余白を設ける */
+    padding: 10px;
+    background-color: #f0f0f0; /* 背景色 */
+    border: 1px solid #ccc;     /* 枠線 */
+    list-style: none; /* リストの黒丸（・）を消す */
+  }
+
+  /* リスト内の各項目のスタイル */
+  .top-left-list li {
+    padding: 8px 12px;
+  }
