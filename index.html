@@ -26,29 +26,30 @@ function showScreen(id) {
   const cur = document.getElementById(currentScreen);
   const next = document.getElementById(id);
 
+  // ① 初期状態：中心が空白、外側が塗りつぶし
   loading.style.transition = "none";
-  loading.style.clipPath = "circle(150% at 50% 50%)"; // 全画面覆う
+  loading.style.clipPath = "circle(150% at 50% 50%)"; // 外側塗りつぶし、中心空白
   loading.style.display = "block";
   loading.style.pointerEvents = "auto";
 
-  loading.getBoundingClientRect(); // 強制リフロー
+  loading.getBoundingClientRect(); // リフロー
 
-  // 1段階目：外→中心
-loading.style.transition = "clip-path 2s cubic-bezier(.2,.9,.2,1)"; // 0.6s → 1s に延長
-requestAnimationFrame(() => {
-  loading.style.clipPath = "circle(0% at 50% 50%)";
-});
+  // ② 外側塗りつぶし → 中心に向かって収縮
+  loading.style.transition = "clip-path 1.5s cubic-bezier(.2,.9,.2,1)";
+  requestAnimationFrame(() => {
+    loading.style.clipPath = "circle(0% at 50% 50%)"; // 中心まで塗りつぶす
+  });
 
-// 2段階目：中心→外
-setTimeout(() => {
-  cur.classList.remove("active");
-  next.classList.add("active");
+  // ③ 少し待って画面切替 & 空白が中心から外に広がる
+  setTimeout(() => {
+    cur.classList.remove("active");
+    next.classList.add("active");
 
-  loading.style.transition = "clip-path 2s cubic-bezier(.2,.9,.2,1)"; // ここも延長
-  loading.style.clipPath = "circle(150% at 50% 50%)";
-}, 1000); // 1段階目のアニメーション時間に合わせてタイミングを調整
+    loading.style.transition = "clip-path 1.5s cubic-bezier(.2,.9,.2,1)";
+    loading.style.clipPath = "circle(150% at 50% 50%)"; // 中心から外に空白を広げる
+  }, 1200); // 1段階目の終了後に待つ時間
 
-  // 完了後に非表示
+  // ④ 完了後に非表示
   loading.addEventListener("transitionend", function onEnd(ev) {
     if (ev.propertyName.indexOf("clip-path") === -1) return;
     loading.style.display = "none";
