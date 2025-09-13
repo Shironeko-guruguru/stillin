@@ -73,11 +73,6 @@ html, body {
   height: 55px;
   font-size: 16px;
 }
-  background: rgba(0,0,0,0.7);
-  color: #fff;
-  font-size: 28px;
-  z-index: 10;
-}
 
   /* メインのコンテンツ領域（上に覆いを出す） */
   #content {
