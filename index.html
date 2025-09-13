@@ -29,7 +29,7 @@ const smallButtons = document.querySelectorAll('.btn.small');
 smallButtons.forEach(button => {
   button.addEventListener('click', () => {
     if (button.classList.contains('activated')) {
-      alert(button.textContent + ' のトレーニングが実行されました！');
+      showScreen("ikusei-home");
       button.classList.remove('activated');
     } else {
       smallButtons.forEach(btn => btn.classList.remove('activated'));
