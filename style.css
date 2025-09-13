@@ -114,7 +114,7 @@ html, body {
 
 .serif-box {
   position: fixed;
-  bottom: 70px;              /* footerの高さに合わせて調整 */
+  bottom: 50%;              /* footerの高さに合わせて調整 */
   left: 50%;
   transform: translateX(-50%);
   max-width: 90%;
