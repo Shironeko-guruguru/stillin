@@ -16,7 +16,31 @@ if ("serviceWorker" in navigator) {
 } 
 </script>
 <body>
+  <main class="chat">
+    <div id="serifBox" class="box">
+      タップして開始
+    </div>
+  </main>
+<script>
+let lines = [];
+let currentIndex = -1;
 
+// セリフファイルを読み込む
+fetch("lines.txt")
+  .then(res => res.text())
+  .then(text => {
+    lines = text.split(/\r?\n/).filter(line => line.trim() !== "");
+  });
+
+const box = document.getElementById("serifBox");
+
+// タップで次のセリフへ
+box.addEventListener("click", () => {
+  if (lines.length === 0) return;
+  currentIndex = (currentIndex + 1) % lines.length; // ループ表示
+  box.textContent = lines[currentIndex];
+});
+</script>
 <script>
 function showScreen(id) {
   // すべて非表示に
