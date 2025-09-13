@@ -83,23 +83,23 @@ html, body {
   overflow: hidden;
 }
 
-
 .screen {
   position: absolute;
   top: 0; left: 0;
-  width: 100%; height: 100%;
-  display: none;
+  width: 100%;
+  height: 100%;
+  display: none;           /* ← デフォルトは非表示 */
   justify-content: center;
   align-items: center;
   font-size: 28px;
-  transition: opacity 0.2s;
+  background: #f0f0f0;      /* デモ用背景色 */
 }
 
 .screen.active {
-  display: flex;
-  opacity: 1;
+  display: flex;             /* ← アクティブな画面だけ表示 */
   z-index: 1;
 }
+
 
 
 #loading {
