@@ -20,52 +20,42 @@ if ("serviceWorker" in navigator) {
   const screens = ["left-2","left-1","center","right-1","right-2"];
   let currentScreen = "left-2";
 
-  /**
-   * 中央に向かって円が収縮していくトランジションで画面切替
-   * - カバーを即座に全画面（大きな円）で表示
-   * - 裏の画面（次の画面）に切り替え
-   * - カバーを円(150% -> 0%) にアニメーションさせて次の画面を見せる
-   */
-  function showScreen(id) {
-    if (!id || id === currentScreen) return;
-    const loading = document.getElementById("loading");
-    const cur = document.getElementById(currentScreen);
-    const next = document.getElementById(id);
+function showScreen(id) {
+  if (!id || id === currentScreen) return;
+  const loading = document.getElementById("loading");
+  const cur = document.getElementById(currentScreen);
+  const next = document.getElementById(id);
 
-    // 1) カバーを即座に「全画面で表示」する（トランジションを一時オフ）
-    loading.style.transition = "none";
-    loading.style.clipPath = "circle(150% at 50% 50%)"; // 大きな円（全画面を覆う）
-    loading.style.display = "block";
+  // カバーを表示
+  loading.style.transition = "none";
+  loading.style.clipPath = "circle(150% at 50% 50%)";
+  loading.style.display = "block";
+  loading.style.pointerEvents = "auto";   // ← 期間中は操作をブロック
 
-    // 強制リフローして transition:none の後に transition を再適用（アニメーション開始を安定させるため）
-    // eslint-disable-next-line no-unused-expressions
-    loading.getBoundingClientRect();
+  // 強制リフロー
+  loading.getBoundingClientRect();
 
-    // 2) 裏で画面切替（カバーが上にあるのでユーザーには見えない）
-    // ここで current を消して next を表示しておく
-    cur.classList.remove("active");
-    next.classList.add("active");
+  // 裏で画面切替
+  cur.classList.remove("active");
+  next.classList.add("active");
 
-    // 3) トランジションを付けて「円を中央へ向かって縮める」
-    loading.style.transition = "clip-path 0.6s cubic-bezier(.2,.9,.2,1)";
-    // アニメーション開始（大きい円 -> 中心の0％）
-    requestAnimationFrame(() => {
-      loading.style.clipPath = "circle(0% at 50% 50%)";
-    });
+  // アニメーション開始
+  loading.style.transition = "clip-path 0.6s cubic-bezier(.2,.9,.2,1)";
+  requestAnimationFrame(() => {
+    loading.style.clipPath = "circle(0% at 50% 50%)";
+  });
 
-    // 4) 終了時にカバーを非表示に戻す
-    function onEnd(ev) {
-      // clip-path の終わりにだけ反応
-      if (ev.propertyName && ev.propertyName.indexOf("clip-path") === -1) return;
-      loading.style.display = "none";
-      // reset clip-path（次回のため）
-      loading.style.clipPath = "circle(0% at 50% 50%)";
-      loading.removeEventListener("transitionend", onEnd);
-    }
-    loading.addEventListener("transitionend", onEnd);
-
-    currentScreen = id;
+  // アニメーション終了後に非表示
+  function onEnd(ev) {
+    if (ev.propertyName.indexOf("clip-path") === -1) return;
+    loading.style.display = "none";
+    loading.style.pointerEvents = "none";   // ← 邪魔しないよう戻す
+    loading.removeEventListener("transitionend", onEnd);
   }
+  loading.addEventListener("transitionend", onEnd);
+
+  currentScreen = id;
+}
 </script>
 <div id="app">
   <!-- コンテンツエリア -->
