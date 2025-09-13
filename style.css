@@ -9,12 +9,9 @@ html, body {
 
 /* スクロールを許可するエリア */ 
 .scroll-area { 
-  overflow-y: auto; 
-  /* 縦スクロール可能 */ 
-  -webkit-overflow-scrolling: touch; 
-  /* iOSで慣性スクロール */ 
-  height: 100%; 
-  /* 必要に応じて高さ指定 */ 
+  overflow-y: auto; /* 縦スクロール可能 */ 
+  -webkit-overflow-scrolling: touch; /* iOSで慣性スクロール */ 
+  height: 100%; /* 必要に応じて高さ指定 */ 
 }
 
 /* ===== フッター配置 ===== */ 
@@ -66,46 +63,19 @@ html, body {
   flex: 1; height: 55px; font-size: 16px; 
 } 
 
-/* メインのコンテンツ領域（上に覆いを出す） */ 
-#content { 
-  position: relative; 
-  height: 70vh; /* 好きな高さに調整 */ 
-  overflow: hidden; 
-  background: #f7f7f7; 
-} 
+/* 全画面を想定 */
+#content {
+  padding-bottom: 180px; /* フッター分の余白 */
+}
 
-/* 各画面 */ 
-.screen { 
-  position: absolute; 
-  top:0; 
-  left:0; 
-  width:100%; 
-  height:100%; 
-  display: none; 
-  justify-content: center; 
-  align-items: center; 
-  font-size: 28px; 
-  color: #222; 
-  transition: opacity 0.2s; 
-} 
+.screen {
+  display: none;          /* デフォルトは非表示 */
+  padding: 20px;
+  font-size: 24px;
+  text-align: center;
+}
 
-.screen.active { 
-  display: flex; 
-  opacity: 1; z-index: 1; 
-} 
-
-/* Loading カバー（円でマスク） */ 
-#loading { 
-  position: absolute; 
-  top:0; 
-  left:0; 
-  width:100%; 
-  height:100%; 
-  background: #111; 
-  z-index: 50; 
-  display: none; 
-  clip-path: circle(0% at 50% 50%); 
-  transition: clip-path 0.6s ease; 
-  will-change: clip-path; 
-  pointer-events: none; /* ← 基本は無効化 */ 
+/* 表示する画面 */
+.screen.active {
+  display: block;
 }
