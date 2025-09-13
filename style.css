@@ -22,7 +22,7 @@ html, body {
   bottom: 0;
   width: 100%;
   max-width: 480px;
-  padding: 12px;
+  padding: 0px;
   box-sizing: border-box;
   background: rgba(255, 255, 255, 0.85); /* 半透明背景で浮かせる感じ */
 }
