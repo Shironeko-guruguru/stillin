@@ -58,7 +58,7 @@ html, body {
 /* ===== 上段ボタン ===== */
 .btn.side {
   width: 100px;
-  height: 60px;
+  height: 70px;
   font-size: 14px;
 }
 
@@ -72,6 +72,7 @@ html, body {
 /* ===== 下段ボタン ===== */
 .btn.sub {
   flex: 1;
+  width: 180px;
   height: 55px;
   font-size: 16px;
 }
