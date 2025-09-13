@@ -7,7 +7,6 @@ html, body {
   margin: 0 auto; 
   padding: 0; 
   overscroll-behavior: none;
-  max-width: 480px;
 } 
 
 /* スクロールを許可するエリア */ 
@@ -81,6 +80,7 @@ html, body {
 }
 
 .content-wrapper {
+  margin: 0 auto;
   max-width: 480px;
   background-color: #ffffff;
   height: 100%;
