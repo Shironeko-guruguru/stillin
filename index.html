@@ -26,27 +26,27 @@ function showScreen(id) {
   const cur = document.getElementById(currentScreen);
   const next = document.getElementById(id);
 
-  // 初期状態：外側塗りつぶし
+  // 初期状態：中心塗りつぶし
   loading.style.transition = "none";
-  loading.style.clipPath = "circle(150% at 50% 50%)";
+  loading.style.clipPath = "circle(0% at 50% 50%)"; // 中心だけ塗りつぶし
   loading.style.display = "block";
   loading.style.pointerEvents = "auto";
 
   loading.getBoundingClientRect(); // 強制リフロー
 
-  // 外→中心に塗りつぶし
+  // 1段階目：中心→外に塗りつぶしを広げる
   loading.style.transition = "clip-path 1s cubic-bezier(.2,.9,.2,1)";
   requestAnimationFrame(() => {
-    loading.style.clipPath = "circle(0% at 50% 50%)";
+    loading.style.clipPath = "circle(150% at 50% 50%)";
   });
 
-  // 少し待って画面切替 & 中心→外に空白を広げる
+  // 2段階目：少し待って画面切替 & 外→中心に収縮
   setTimeout(() => {
     cur.classList.remove("active");
     next.classList.add("active");
 
     loading.style.transition = "clip-path 1s cubic-bezier(.2,.9,.2,1)";
-    loading.style.clipPath = "circle(150% at 50% 50%)";
+    loading.style.clipPath = "circle(0% at 50% 50%)"; // 中心に収縮
   }, 1200);
 
   // 完了後に非表示
