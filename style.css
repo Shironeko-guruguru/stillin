@@ -18,7 +18,7 @@ html, body {
 
 /* ===== フッター配置 ===== */
 .game-footer {
-  position: fixed;
+  position: sticky;
   bottom: 0;
   width: 100%;
   max-width: 480px;
