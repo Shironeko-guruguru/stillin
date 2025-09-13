@@ -34,7 +34,7 @@ function showScreen(id) {
   loading.getBoundingClientRect(); // 強制リフロー
 
   // 1段階目：外→中心
-loading.style.transition = "clip-path 1s cubic-bezier(.2,.9,.2,1)"; // 0.6s → 1s に延長
+loading.style.transition = "clip-path 2s cubic-bezier(.2,.9,.2,1)"; // 0.6s → 1s に延長
 requestAnimationFrame(() => {
   loading.style.clipPath = "circle(0% at 50% 50%)";
 });
@@ -44,7 +44,7 @@ setTimeout(() => {
   cur.classList.remove("active");
   next.classList.add("active");
 
-  loading.style.transition = "clip-path 1s cubic-bezier(.2,.9,.2,1)"; // ここも延長
+  loading.style.transition = "clip-path 2s cubic-bezier(.2,.9,.2,1)"; // ここも延長
   loading.style.clipPath = "circle(150% at 50% 50%)";
 }, 1000); // 1段階目のアニメーション時間に合わせてタイミングを調整
 
