@@ -99,7 +99,13 @@ html, body {
   margin: 0 auto;
 }
 
+
+/* 開始ボタンもフッターの上に */
 .start-btn {
+  position: fixed;
+  bottom: 70px; /* フッターの高さに合わせる */
+  left: 50%;
+  transform: translateX(-50%);
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 8px;
@@ -107,6 +113,7 @@ html, body {
   background: #4a90e2;
   color: white;
   cursor: pointer;
+  z-index: 1000;
 }
 .start-btn:hover {
   background: #357ab8;
