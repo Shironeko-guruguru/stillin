@@ -20,7 +20,7 @@ html, body {
 .game-footer {
   position: fixed;
   bottom: 0;
-  left: 50%;
+  margin: 0;
   width: 100%;
   max-width: 480px;
   padding: 12px;
