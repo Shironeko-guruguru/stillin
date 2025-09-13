@@ -42,7 +42,6 @@ html, body {
   color: #333;
   border: solid 0.1px;
   background: white;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.25);
   transition: transform 0.1s, box-shadow 0.1s;
   border-radius: 30px; /* 楕円 */
   padding: 0 16px; /* 文字が窮屈にならないよう余白 */
