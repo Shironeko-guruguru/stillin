@@ -19,10 +19,12 @@ if ("serviceWorker" in navigator) {
 <div id="app"> 
   <div id="content">
     <ul class="top-left-list">
-      <li id="stm"></li>
-      <li id="spd"></li>
-      <li id="ctrl"></li>
-      <li id="def"></li>
+      <li id="VIT"></li>
+      <li id="STR"></li>
+      <li id="DEF"></li>
+      <li id="AGI"></li>
+      <li id="DEX"></li>
+      <li id="INT"></li>
     </ul>
     <div class="screen active" id="ikusei-home">
       <div class="game-footer"> 
@@ -88,6 +90,11 @@ function updateStatus() {
   const DEXstatus = document.getElementById('dex');
   const INTstatus = document.getElementById('int');
   defstatus.textContent = `${"VIT"} ${VIT}`;
+  defstatus.textContent = `${"STR"} ${STR}`;
+  defstatus.textContent = `${"DEF"} ${DEF}`;
+  defstatus.textContent = `${"AGI"} ${AGI}`;
+  defstatus.textContent = `${"DEX"} ${DEX}`;
+  defstatus.textContent = `${"INT"} ${INT}`;
 }
 
 updateStatus();
