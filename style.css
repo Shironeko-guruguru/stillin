@@ -32,6 +32,7 @@ html, body {
   justify-content: center;
   align-items: flex-end;
   margin: 8px 0;
+  max-width: 480px;
 }
 
 /* ===== ボタン共通 ===== */
