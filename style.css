@@ -22,7 +22,7 @@ html, body {
   bottom: 0;
   width: 100%;
   max-width: 480px;
-  padding: 0px;
+  padding: 12px;
   box-sizing: border-box;
   background: rgba(255, 255, 255, 0.85); /* 半透明背景で浮かせる感じ */
 }
@@ -84,7 +84,7 @@ html, body {
   max-width: 480px;
   background-color: #ffffff;
   height: 100%;
-  padding: 20px;
+  padding: 12px;
   box-sizing: border-box; 
 }
 
