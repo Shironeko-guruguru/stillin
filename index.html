@@ -19,12 +19,10 @@ if ("serviceWorker" in navigator) {
 <div id="app"> 
   <div id="content">
     <ul class="top-left-list">
-      <li>項目 1</li>
-      <li>項目 2</li>
-      <li>項目 3</li>
-      <li>項目 4</li>
-      <li>項目 5</li>
-      <li>項目 6</li>
+      <li id="stm"></li>
+      <li id="spd"></li>
+      <li id="ctrl"></li>
+      <li id="def"></li>
     </ul>
     <div class="screen active" id="ikusei-home">
       <div class="game-footer"> 
@@ -75,6 +73,137 @@ smallButtons.forEach(button => {
     }
   });
 });
+
+let stm = 4;
+let spd = 4;
+let ctrl = 4;
+let def = 4;
+function updateStatus() {
+  const stmstatus = document.getElementById('stm');
+  const spdstatus = document.getElementById('spd');
+  const ctrlstatus = document.getElementById('ctrl');
+  const defstatus = document.getElementById('def');
+  let statusText = '';
+  
+  if (stm >= 1000) {
+    statusText = 'U';
+  } if (1000 > stm >= 900) {
+    statusText = 'S+';
+  } if (900 > stm >= 800) {
+    statusText = 'S';
+  } if (800 > stm >= 700) {
+    statusText = 'A+';
+  } if (700 > stm >= 600) {
+    statusText = 'A';
+  } if (600 > stm >= 500) {
+    statusText = 'B+';
+  } if (500 > stm >= 400) {
+    statusText = 'B';
+  } if (400 > stm >= 300) {
+    statusText = 'C+';
+  } if (300 > stm >= 250) {
+    statusText = 'C';
+  } if (250 > stm >= 200) {
+    statusText = 'D+';
+  } if (200 > stm >= 150) {
+    statusText = 'D';
+  } if (150 > stm >= 100) {
+    statusText = 'E+';
+  } if (100 > stm) {
+    statusText = 'E';
+  }
+  stmstatus.textContent = `${statusText} ${stm}/${1000}`;
+
+  if (spd >= 1000) {
+    statusText = 'U';
+  } if (1000 > spd >= 900) {
+    statusText = 'S+';
+  } if (900 > spd >= 800) {
+    statusText = 'S';
+  } if (800 > spd >= 700) {
+    statusText = 'A+';
+  } if (700 > spd >= 600) {
+    statusText = 'A';
+  } if (600 > spd >= 500) {
+    statusText = 'B+';
+  } if (500 > spd >= 400) {
+    statusText = 'B';
+  } if (400 > spd >= 300) {
+    statusText = 'C+';
+  } if (300 > spd >= 250) {
+    statusText = 'C';
+  } if (250 > spd >= 200) {
+    statusText = 'D+';
+  } if (200 > spd >= 150) {
+    statusText = 'D';
+  } if (150 > spd >= 100) {
+    statusText = 'E+';
+  } if (100 > spd) {
+    statusText = 'E';
+  }
+  spdstatus.textContent = `${statusText} ${spd}/${1000}`;
+
+  if (ctrl >= 1000) {
+    statusText = 'U';
+  } if (1000 > ctrl >= 900) {
+    statusText = 'S+';
+  } if (900 > ctrl >= 800) {
+    statusText = 'S';
+  } if (800 > ctrl >= 700) {
+    statusText = 'A+';
+  } if (700 > ctrl >= 600) {
+    statusText = 'A';
+  } if (600 > ctrl >= 500) {
+    statusText = 'B+';
+  } if (500 > ctrl >= 400) {
+    statusText = 'B';
+  } if (400 > ctrl >= 300) {
+    statusText = 'C+';
+  } if (300 > ctrl >= 250) {
+    statusText = 'C';
+  } if (250 > ctrl >= 200) {
+    statusText = 'D+';
+  } if (200 > ctrl >= 150) {
+    statusText = 'D';
+  } if (150 > ctrl >= 100) {
+    statusText = 'E+';
+  } if (100 > ctrl) {
+    statusText = 'E';
+  }
+  ctrlstatus.textContent = `${statusText} ${ctrl}/${1000}`;
+
+  if (def >= 1000) {
+    statusText = 'U';
+  } if (1000 > def >= 900) {
+    statusText = 'S+';
+  } if (900 > def >= 800) {
+    statusText = 'S';
+  } if (800 > def >= 700) {
+    statusText = 'A+';
+  } if (700 > def >= 600) {
+    statusText = 'A';
+  } if (600 > def >= 500) {
+    statusText = 'B+';
+  } if (500 > def >= 400) {
+    statusText = 'B';
+  } if (400 > def >= 300) {
+    statusText = 'C+';
+  } if (300 > def >= 250) {
+    statusText = 'C';
+  } if (250 > def >= 200) {
+    statusText = 'D+';
+  } if (200 > def >= 150) {
+    statusText = 'D';
+  } if (150 > def >= 100) {
+    statusText = 'E+';
+  } if (100 > def) {
+    statusText = 'E';
+  }
+  defstatus.textContent = `${statusText} ${def}/${1000}`;
+}
+
+
+updateStatus();
 
 </script>
 </body>
