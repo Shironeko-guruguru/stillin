@@ -42,6 +42,7 @@ html, body {
   border: none;
   margin: 0 8px;
   font-weight: bold;
+  font-size: 14px;
   color: #333;
   background: #f3f3f3;
   transition: transform 0.5s;
@@ -58,13 +59,11 @@ html, body {
 .btn.side {
   width: 100px;
   height: 70px;
-  font-size: 14px;
 }
 
 .btn.main {
   width: 160px;
   height: 70px;
-  font-size: 18px;
   font-weight: bold;
 }
 
@@ -73,7 +72,6 @@ html, body {
   flex: 1;
   width: 180px;
   height: 55px;
-  font-size: 16px;
 }
 
 /* 全画面を想定 */
