@@ -92,3 +92,24 @@ html, body {
 .screen.active {
   display: block;
 }
+
+
+.chat {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.box {
+  padding: 16px;
+  border: 2px solid #a0c4ff;
+  border-radius: 12px;
+  background: #fff;
+  line-height: 1.5;
+  cursor: pointer; /* タップできることを示す */
+  user-select: none; /* テキスト選択を防ぐ */
+  transition: background 0.2s;
+}
+
+.box:active {
+  background: #eef7ff; /* タップ時に軽く色を変える */
+}
