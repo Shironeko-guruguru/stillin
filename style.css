@@ -104,10 +104,10 @@ html, body {
   position: absolute;
   top:0; left:0;
   width:100%; height:100%;
-  background: #111;
+  background: #111;            /* 塗りつぶし色 */
   z-index: 50;
   display: none;
-  clip-path: circle(150% at 50% 50%); /* 初期は外側塗りつぶし */
+  clip-path: circle(0% at 50% 50%); /* 初期：中心だけ塗りつぶし */
   transition: clip-path 1s cubic-bezier(.2,.9,.2,1);
   will-change: clip-path;
   pointer-events: none;
