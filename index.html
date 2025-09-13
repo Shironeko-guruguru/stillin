@@ -41,14 +41,17 @@ function showScreen(id) {
   });
 
   // 2段階目：少し待って画面切替 & 外→中心に収縮
+setTimeout(() => {
+  next.classList.add("active"); // 先に次を表示
+  // 1秒後に古い画面を非表示
   setTimeout(() => {
     cur.classList.remove("active");
-    next.classList.add("active");
-    setTimeout(()=>cur.classList.remove("active"), 1000)
+  }, 1000);
 
-    loading.style.transition = "clip-path 1s cubic-bezier(.2,.9,.2,1)";
-    loading.style.clipPath = "circle(0% at 50% 50%)"; // 中心に収縮
-  }, 1200);
+  // 外→中心に収縮
+  loading.style.transition = "clip-path 1s cubic-bezier(.2,.9,.2,1)";
+  loading.style.clipPath = "circle(0% at 50% 50%)";
+}, 1200);
 
   // 完了後に非表示
   loading.addEventListener("transitionend", function onEnd(ev) {
