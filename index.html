@@ -2,93 +2,31 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#000000">
-  <title>still in...</title>
-
-  <link rel="manifest" href="idk.json">
-  <link rel="icon" href="./images/icon-1280x1280.png" sizes="1028x1028">
-  <link rel="apple-touch-icon" href="./images/icon-1280x1280.png" sizes="1028x1028">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>画面切替デモ</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<script>
-  let currentScreen = "left-1"; // 初期画面に合わせる
-
-  function showScreen(id) {
-    if (!id || id === currentScreen) return;
-
-    const loading = document.getElementById("loading");
-    const cur = document.getElementById(currentScreen);
-    const next = document.getElementById(id);
-
-    // --- 初期化 ---
-    loading.style.transition = "none";
-    loading.style.clipPath = "circle(0% at 50% 50%)";
-    loading.style.display = "block";
-    loading.style.pointerEvents = "auto";
-
-    loading.getBoundingClientRect(); // 強制リフロー
-
-    requestAnimationFrame(() => {
-      // ①中心→外
-      loading.style.transition = "clip-path 1s cubic-bezier(.2,.9,.2,1)";
-      loading.style.clipPath = "circle(150% at 50% 50%)";
-    });
-
-    function onExpandEnd(e) {
-      if (e.propertyName !== "clip-path") return;
-      loading.removeEventListener("transitionend", onExpandEnd);
-
-      // ②画面切り替え
-      cur.classList.remove("active");
-      next.classList.add("active");
-
-      // 少し時間をおいて外→中心
-      requestAnimationFrame(() => {
-        loading.style.transition = "clip-path 1s cubic-bezier(.2,.9,.2,1)";
-        loading.style.clipPath = "circle(0% at 50% 50%)";
-      });
-
-      loading.addEventListener("transitionend", onCollapseEnd);
-    }
-
-    function onCollapseEnd(e) {
-      if (e.propertyName !== "clip-path") return;
-      loading.removeEventListener("transitionend", onCollapseEnd);
-
-      // 完全終了
-      loading.style.display = "none";
-      loading.style.pointerEvents = "none";
-    }
-
-    loading.addEventListener("transitionend", onExpandEnd);
-    currentScreen = id;
-  }
-</script>
-
-<div id="app">
   <div id="content">
-    <div class="screen active" id="left-1">left-1</div>
-    <div class="screen" id="center">center</div>
-    <div class="screen" id="right-1">right-1</div>
-    <div class="screen" id="left-2">left-2</div>
-    <div class="screen" id="right-2">right-2</div>
+    <div id="screen1" class="screen active">画面1</div>
+    <div id="screen2" class="screen">画面2</div>
   </div>
-
-  <div id="loading"></div>
 
   <div class="game-footer">
-    <div class="row top-row">
-      <button class="btn side" onclick="showScreen('left-1')">left</button>
-      <button class="btn main" onclick="showScreen('center')">center</button>
-      <button class="btn side" onclick="showScreen('right-1')">right</button>
+    <div class="row">
+      <button class="btn side" onclick="changeScreen('screen1')">左</button>
+      <button class="btn main" onclick="changeScreen('screen2')">中央</button>
+      <button class="btn side" onclick="changeScreen('screen1')">右</button>
     </div>
-    <div class="row bottom-row">
-      <button class="btn sub" onclick="showScreen('left-2')">left</button>
-      <button class="btn sub" onclick="showScreen('right-2')">right</button>
+    <div class="row">
+      <button class="btn sub">下1</button>
+      <button class="btn sub">下2</button>
     </div>
   </div>
-</div>
+
+  <!-- ローディング用の覆い -->
+  <div id="loading"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>
