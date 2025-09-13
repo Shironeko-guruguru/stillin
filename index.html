@@ -46,8 +46,6 @@ if ("serviceWorker" in navigator) {
         <button class="btn small">STR</button> 
         <button class="btn small">DEF</button>
         <button class="btn small">AGI</button> 
-        <button class="btn small">DEX</button> 
-        <button class="btn small">INT</button> 
         </div>
         <div class="row bottom-row"> 
         <button class="btn main" onclick="showScreen('ikusei-home')">もどる</button>
@@ -77,29 +75,6 @@ smallButtons.forEach(button => {
     }
   });
 });
-
-let VIT = 4;
-let STR = 4;
-let DEF = 4;
-let AGI = 4;
-let DEX = 4;
-let INT = 4;
-function updateStatus() {
-  const VITstatus = document.getElementById('vit');
-  const STRstatus = document.getElementById('str');
-  const DEFstatus = document.getElementById('def');
-  const AGIstatus = document.getElementById('agi');
-  const DEXstatus = document.getElementById('dex');
-  const INTstatus = document.getElementById('int');
-  VITstatus.textContent = `${"VIT"} ${VIT}`;
-  STRstatus.textContent = `${"STR"} ${STR}`;
-  DEFstatus.textContent = `${"DEF"} ${DEF}`;
-  AGIstatus.textContent = `${"AGI"} ${AGI}`;
-  DEXstatus.textContent = `${"DEX"} ${DEX}`;
-  INTstatus.textContent = `${"INT"} ${INT}`;
-}
-
-updateStatus();
 
 </script>
 </body>
