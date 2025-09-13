@@ -78,6 +78,13 @@ html, body {
 .btn.small {
   width: 70px;
   height: 70px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.1s ease-in-out;
+}
+
+.btn.small.activated {
+  transform: translateY(-5px);
 }
 
 /* 全画面を想定 */
