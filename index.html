@@ -16,13 +16,22 @@ if ("serviceWorker" in navigator) {
 } 
 </script>
 <body>
+<script>
+function showScreen(id) {
+  document.querySelectorAll(".screen").forEach(el => {
+    el.classList.remove("active");
+  });
+  document.getElementById(id).classList.add("active");
+}
+showScreen("ikusei-home");
+</script>
 <div id="app"> 
   <div id="content"> 
-    <div class="screen active" id="ikusei">
+    <div class="screen active" id="ikusei-home">
       <div class="game-footer"> 
         <div class="row top-row"> 
         <button class="btn side">お休み</button> 
-        <button class="btn main">トレーニング</button> 
+        <button class="btn main" onclick="showScreen('training')">トレーニング</button> 
         <button class="btn side">スキル</button> 
         </div> 
       <div class="row bottom-row"> 
@@ -30,6 +39,8 @@ if ("serviceWorker" in navigator) {
         <button class="btn sub">お出掛け</button> 
       </div>
     </div> 
+    <div class="screen" id="training">
+    </div>
   </div> 
 </div>
 </body>
