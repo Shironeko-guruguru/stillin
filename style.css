@@ -42,7 +42,7 @@ html, body {
   color: #333;
   border: solid 0.1px;
   background: white;
-  transition: transform 0.1s, box-shadow 0.1s;
+  transition: transform 0.1s;
   border-radius: 30px; /* 楕円 */
   padding: 0 16px; /* 文字が窮屈にならないよう余白 */
 }
@@ -50,7 +50,6 @@ html, body {
 /* 押したときのアニメーション */
 .btn:active {
   transform: scale(0.95);
-  box-shadow: 0 2px 3px rgba(0,0,0,0.25) inset;
 }
 
 /* ===== 上段ボタン ===== */
