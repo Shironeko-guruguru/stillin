@@ -16,75 +16,19 @@ if ("serviceWorker" in navigator) {
 } 
 </script>
 <body>
-<script>
-let lines = [];
-let currentIndex = 0;
-
-const box = document.getElementById("serifBox");
-const startBtn = document.getElementById("startBtn");
-
-// セリフを読み込む
-fetch("lines.txt")
-  .then(res => res.text())
-  .then(text => {
-    lines = text.split(/\r?\n/).filter(line => line.trim() !== "");
-  });
-
-// 開始ボタンが押されたら最初のセリフを表示
-startBtn.addEventListener("click", () => {
-  if (lines.length === 0) return;
-  currentIndex = 0;
-  box.textContent = lines[currentIndex];
-  box.style.display = "block";
-  startBtn.style.display = "none";
-});
-
-// ボックスをタップすると次のセリフへ
-box.addEventListener("click", () => {
-  currentIndex++;
-  if (currentIndex < lines.length) {
-    box.textContent = lines[currentIndex];
-  } else {
-    // 最後のセリフを超えたら非表示
-    box.style.opacity = "0";
-    setTimeout(() => {
-      box.style.display = "none";
-    }, 300);
-  }
-});
-</script>
-<script>
-function showScreen(id) {
-  // すべて非表示に
-  document.querySelectorAll(".screen").forEach(el => {
-    el.classList.remove("active");
-  });
-
-  // 指定画面だけ表示
-  document.getElementById(id).classList.add("active");
-}
-showScreen("center");
-
-</script>
 <div id="app"> 
-  <!-- コンテンツエリア --> 
   <div id="content"> 
-    <div class="screen active" id="left-1">left-1</div> 
-    <div class="screen" id="center">center</div> 
-    <div class="screen" id="right-1">right-1</div> 
-    <div class="screen" id="left-2">left-2</div> 
-    <div class="screen" id="right-2">right-2</div> 
-  </div> 
-  <!-- フッターメニュー --> 
-  <div class="game-footer"> 
-    <div class="row top-row"> 
-      <button class="btn side" onclick="showScreen('left-1')">left</button> 
-      <button class="btn main" onclick="showScreen('center')">center</button> 
-      <button class="btn side" onclick="showScreen('right-1')">right</button> 
-    </div> 
-    <div class="row bottom-row"> 
-      <button class="btn sub" onclick="showScreen('left-2')">left</button> 
-      <button class="btn sub" onclick="showScreen('right-2')">right</button> 
+    <div class="screen active" id="ikusei">
+      <div class="game-footer"> 
+        <div class="row top-row"> 
+        <button class="btn side">お休み</button> 
+        <button class="btn main">トレーニング</button> 
+        <button class="btn side">スキル</button> 
+        </div> 
+      <div class="row bottom-row"> 
+        <button class="btn sub">アイテム</button> 
+        <button class="btn sub">お出掛け</button> 
+      </div>
     </div> 
   </div> 
 </div>
