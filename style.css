@@ -111,7 +111,7 @@ html, body {
     margin: 10px;    /* 画面の端から少し余白を設ける */
     padding: 10px;
     background-color: #ffffff; /* 背景色 */
-    border: 1px solid #ffa1a1;     /* 枠線 */
+    border: 10px solid #ffa1a1;     /* 枠線 */
     border-radius: 8px;
     list-style: none; /* リストの黒丸（・）を消す */
   }
