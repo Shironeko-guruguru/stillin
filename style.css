@@ -74,6 +74,12 @@ html, body {
   height: 55px;
 }
 
+/*=====トレーニング時=====*/
+.btn.small {
+  width: 70px;
+  height: 70px;
+}
+
 /* 全画面を想定 */
 #content {
   padding-bottom: 180px; /* フッター分の余白 */
