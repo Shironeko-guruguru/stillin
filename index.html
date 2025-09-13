@@ -9,6 +9,11 @@
 <link rel="icon" href="./images/icon-1280x1280.png" sizes="1028x1028">
 <link rel="apple-touch-icon" href="./images/icon-1280x1280.png" sizes="1028x1028">
 </head>
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/service-worker.js");
+  }
+</script>
 <body>
   <div id="content">
     <div id="screen1" class="screen active">画面1</div>
