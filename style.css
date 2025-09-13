@@ -20,7 +20,8 @@ html, body {
 .game-footer {
   position: fixed;
   bottom: 0;
-  margin: 0;
+  left: 50%; /* ① 左端を画面の真ん中に移動 */
+  transform: translateX(-50%); /* ② 要素の幅の半分だけ左に戻す */
   width: 100%;
   max-width: 480px;
   padding: 12px;
