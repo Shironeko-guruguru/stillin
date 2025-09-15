@@ -156,3 +156,16 @@ html, body {
   height: 20px;
   font-weight: bold;
 }
+
+/* ===== データ連携メニュー ===== */
+#data-menu {
+  position: fixed;
+  bottom: 60px; /* 下部ナビゲーションの少し上 */
+  right: 8px;
+  width: 240px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  z-index: 101;
+}
