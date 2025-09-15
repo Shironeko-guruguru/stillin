@@ -17,10 +17,38 @@ html, body {
   height: 100%; /* 必要に応じて高さ指定 */ 
 }
 
+.settings-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 8px;
+  z-index: 100; /* 他の要素より手前に表示 */
+}
+
+.settings-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  opacity: 0.6; /* 少し薄くして見た目を調整 */
+  transition: opacity 0.2s;
+}
+
+.settings-btn:hover {
+  opacity: 1; /* マウスカーソルを乗せたら濃くする */
+}
+
+.settings-btn svg {
+  display: block; /* ボタン内でのズレを防止 */
+  width: 28px;
+  height: 28px;
+  fill: #333; /* アイコンの色 */
+}
+
 /* ===== ヘッダー配置 ===== */
 .game-header {
-  position: fixed; /* 画面上部に固定 */
-  top: 0;
+  position: fixed;
+  top: 45px; /* 表示位置を下にずらす (変更) */
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -28,11 +56,12 @@ html, body {
   padding: 12px;
   box-sizing: border-box;
   background: rgba(255, 255, 255, 0.85);
-  display: flex; /* 横並びにする */
-  justify-content: space-between; /* 両端に寄せる */
+  display: flex;
+  justify-content: space-between;
   font-size: 16px;
   color: #333;
 }
+
 
 /* ===== フッター配置 ===== */
 .game-footer {
@@ -107,7 +136,7 @@ html, body {
 
 /* 全画面を想定 */
 #content {
-  padding-top: 60px; /* ヘッダー分の余白*/
+  padding-top: 105px; /* ヘッダー分の余白*/
   padding-bottom: 180px; /* フッター分の余白 */
 }
 
