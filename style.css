@@ -18,19 +18,24 @@ html, body {
 }
 
 .home-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column; /* ボタンを縦に並べる */
-  height: calc(100vh - 280px); /* ヘッダーとフッターを除いた高さいっぱいに広げる */
+  position: absolute; /* 位置を自由に動かせるようにする */
+  bottom: 70px;       /* 下部のナビゲーションバーの少し上に配置 */
+  width: 100%;
+  max-width: 480px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;           /* ボタンを横並びにする */
+  justify-content: space-evenly; /* ボタンの間に均等なスペースを空ける */
+  /* 不要になったスタイルを削除 */
+  /* flex-direction, height は削除 */
 }
 
 /* ホーム画面のメニューボタン */
 .home-menu-btn {
-  width: 80%;
-  max-width: 320px;
+  width: 45%; /* 横並びになるように幅を調整 */
+  max-width: 200px;
   padding: 20px;
-  margin: 15px 0;
+  margin: 0; /* 不要な縦マージンを削除 */
   font-size: 20px;
   font-weight: bold;
   color: white;

@@ -78,12 +78,24 @@ if ("serviceWorker" in navigator) {
 </div> 
 </div>
 <script>
+
+const gameHeader = document.querySelector('.game-header');
+
+
 function showScreen(id) {
+  // ホーム画面かどうかをチェック
+  if (id === "main-home") {
+    gameHeader.style.display = "none"; // ホーム画面ならヘッダーを非表示
+  } else {
+    gameHeader.style.display = "flex"; // それ以外の画面なら表示
+  }
+
   document.querySelectorAll(".screen").forEach(el => {
     el.classList.remove("active");
   });
   document.getElementById(id).classList.add("active");
 }
+
 showScreen("main-home");
 
 const smallButtons = document.querySelectorAll('.btn.small');
