@@ -17,6 +17,23 @@ html, body {
   height: 100%; /* 必要に応じて高さ指定 */ 
 }
 
+/* ===== ヘッダー配置 ===== */
+.game-header {
+  position: fixed; /* 画面上部に固定 */
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  padding: 12px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.85);
+  display: flex; /* 横並びにする */
+  justify-content: space-between; /* 両端に寄せる */
+  font-size: 16px;
+  color: #333;
+}
+
 /* ===== フッター配置 ===== */
 .game-footer {
   position: fixed;
@@ -90,6 +107,7 @@ html, body {
 
 /* 全画面を想定 */
 #content {
+  padding-top: 60px; /* ヘッダー分の余白*/
   padding-bottom: 180px; /* フッター分の余白 */
 }
 
