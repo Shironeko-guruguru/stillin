@@ -65,7 +65,7 @@
           <button class="nav-btn">タスク</button>
           <button class="nav-btn active">ホーム</button>
           <button class="nav-btn">ガチャ</button>
-          <button class="nav-btn">データ</button>
+          <button class="nav-btn" id="data-btn">データ</button>
         </div>
       </div>
 
@@ -148,15 +148,13 @@
         </div>
       </div>
 
-    </div>
-    <div id="data-menu" class="hidden">
+    </div><div id="data-menu" class="hidden">
       <button class="menu-btn" id="save-data-btn">進行状況を保存(ダウンロード)</button>
       <button class="menu-btn" id="load-data-btn">進行状況を復旧</button>
     </div>
     <input type="file" id="file-loader" class="hidden" accept=".json">
-  </div>
 
-  <script>
+  </div><script>
   // ===== ゲームの状態を管理するオブジェクト =====
 let gameState = {};
 
@@ -426,4 +424,5 @@ document.body.addEventListener('click', () => {
 showScreen("main-home");
   </script>
 </body>
+
 </html>
