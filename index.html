@@ -12,12 +12,6 @@
   <link rel="apple-touch-icon" href="./images/icon-1280x1280.png" sizes="1028x1028">
 </head>
 
-<script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/service-worker.js");
-  }
-</script>
-
 <body>
   <div id="app">
     <div class="settings-container">
@@ -54,7 +48,6 @@
     </div>
 
     <div id="content">
-
       <div class="screen" id="main-home">
         <div class="home-content">
           <button class="home-menu-btn">ストーリー</button>
@@ -147,14 +140,17 @@
           </div>
         </div>
       </div>
+    </div>
 
-    </div><div id="data-menu" class="hidden">
+    <div id="data-menu" class="hidden">
       <button class="menu-btn" id="save-data-btn">進行状況を保存(ダウンロード)</button>
       <button class="menu-btn" id="load-data-btn">進行状況を復旧</button>
     </div>
     <input type="file" id="file-loader" class="hidden" accept=".json">
 
-  </div><script>// ===== ゲームの状態を管理するオブジェクト =====
+  </div>
+<script>
+    // ===== ゲームの状態を管理するオブジェクト =====
 let gameState = {};
 
 // ===== UI更新用の要素をあらかじめ取得 =====
@@ -172,7 +168,6 @@ const buffDisplay = document.getElementById('buff-display');
 
 // ===== ゲーム初期化関数 =====
 function initializeGame() {
-  // ★追加: 新しいゲームを始める前に、古い中断データを削除
   localStorage.removeItem('savedGame');
 
   gameState = {
@@ -184,8 +179,8 @@ function initializeGame() {
     agi: 10,
     vit: 10,
     dex: 10,
-    maxStat: 200, // パラメータの最大値
-    trainingBuffTurns: 0, // パラメータ上昇量アップ効果の残りターン
+    maxStat: 200,
+    trainingBuffTurns: 0,
   };
   updateUI();
   showScreen('ikusei-home');
@@ -236,22 +231,17 @@ function showScreen(id) {
 
 // ===== 各ボタンのイベントリスナー =====
 
-// 1. ホーム画面 → 「育成」ボタン
 document.getElementById('goto-char-select-btn').addEventListener('click', () => {
-  // ★変更: 中断したデータがあるか確認
   const savedData = localStorage.getItem('savedGame');
   if (savedData) {
-    // あれば、そのデータでゲームを再開
     gameState = JSON.parse(savedData);
     updateUI();
     showScreen('ikusei-home');
   } else {
-    // なければ、キャラクター選択画面へ
     showScreen('char-select');
   }
 });
 
-// 2. キャラクター選択
 document.querySelectorAll('.char-card').forEach(card => {
   card.addEventListener('click', () => {
     document.querySelector('.char-card.selected').classList.remove('selected');
@@ -259,12 +249,10 @@ document.querySelectorAll('.char-card').forEach(card => {
   });
 });
 
-// 3. キャラクター決定 → 育成開始
 document.getElementById('confirm-char-btn').addEventListener('click', () => {
   initializeGame();
 });
 
-// 4. トレーニングボタン
 document.querySelectorAll('.btn.small').forEach(button => {
   button.addEventListener('click', () => {
     if (gameState.turn <= 0) return;
@@ -283,7 +271,6 @@ document.querySelectorAll('.btn.small').forEach(button => {
   });
 });
 
-// 5. お休みボタン
 document.getElementById('rest-btn').addEventListener('click', () => {
   if (gameState.turn <= 0) return;
   gameState.turn--;
@@ -293,7 +280,6 @@ document.getElementById('rest-btn').addEventListener('click', () => {
   updateUI();
 });
 
-// 6. お出掛けボタン
 document.getElementById('outing-btn').addEventListener('click', () => {
   if (gameState.turn <= 0) return;
   gameState.turn--;
@@ -302,7 +288,6 @@ document.getElementById('outing-btn').addEventListener('click', () => {
   gameState.trainingBuffTurns = 5;
   updateUI();
 });
-
 
 // ===== ハンバーガーメニュー制御 =====
 const settingsBtn = document.querySelector('.settings-btn');
@@ -322,19 +307,15 @@ settingsBtn.addEventListener('click', () => {
 const saveQuitBtn = document.getElementById('save-quit-btn');
 const noSaveQuitBtn = document.getElementById('no-save-quit-btn');
 
-// ★変更: 「保存して中断」の処理
 saveQuitBtn.addEventListener('click', () => {
-  // 現在のgameStateをローカルストレージに保存
   localStorage.setItem('savedGame', JSON.stringify(gameState));
   showScreen('main-home');
   settingsMenu.classList.add('hidden');
 });
 
-// ★変更: 「保存せず中断」の処理
 noSaveQuitBtn.addEventListener('click', () => {
   const isConfirmed = confirm("本当に保存しないで中断しますか？\n（この操作は取り消せません）");
   if (isConfirmed) {
-    // 中断データがあれば削除
     localStorage.removeItem('savedGame');
     showScreen('main-home');
     settingsMenu.classList.add('hidden');
@@ -353,12 +334,9 @@ dataBtn.addEventListener('click', (event) => {
   dataMenu.classList.toggle('hidden');
 });
 
-// 「進行状況を保存(ダウンロード)」の処理
 saveDataBtn.addEventListener('click', () => {
-  // ★変更: ローカルストレージの中断データも保存対象にする
   const activeGameState = localStorage.getItem('savedGame');
   const dataToSave = activeGameState ? JSON.parse(activeGameState) : gameState;
-
   if (Object.keys(dataToSave).length === 0) {
     alert("保存できる進行状況がありません。");
     return;
@@ -390,7 +368,6 @@ fileLoader.addEventListener('change', (event) => {
       const restoredState = JSON.parse(e.target.result);
       if (restoredState.hp !== undefined && restoredState.turn !== undefined) {
         gameState = restoredState;
-        // ★追加: 復元したデータを中断データとして保存
         localStorage.setItem('savedGame', JSON.stringify(gameState));
         updateUI();
         showScreen('ikusei-home');
@@ -411,7 +388,7 @@ document.body.addEventListener('click', () => {
 });
 
 // ===== 初期画面の設定 =====
-showScreen("main--home");
+showScreen("main-home");
 </script>
 </body>
 
