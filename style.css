@@ -25,6 +25,46 @@ html, body {
   z-index: 100; /* 他の要素より手前に表示 */
 }
 
+#settings-menu {
+  position: absolute;
+  top: 55px; /* アイコンの少し下に表示 */
+  right: 8px;
+  width: 180px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden; /* 角丸をボタンにも適用 */
+  z-index: 99;
+}
+
+/* メニュー内のボタン */
+.menu-btn {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 14px;
+  text-align: left;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #f0f0f0; /* ボタンの区切り線 */
+  cursor: pointer;
+}
+
+/* 最後のボタンの下線は消す */
+.menu-btn:last-child {
+  border-bottom: none;
+}
+
+/* マウスを乗せたときの色 */
+.menu-btn:hover {
+  background-color: #f5f5f5;
+}
+
+/* メニューを非表示にするためのクラス */
+.hidden {
+  display: none;
+}
+
 .settings-btn {
   background: none;
   border: none;
