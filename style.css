@@ -15,7 +15,6 @@ html, body {
 
 /* ===== 各画面の共通スタイル ===== */
 .screen {
-  /* ★修正: 全ての画面を同じルールで配置し、重なり順の基準にする */
   position: absolute;
   top: 0;
   left: 0;
@@ -23,21 +22,31 @@ html, body {
   height: 100vh;
   box-sizing: border-box;
   display: none;
-  padding: 20px;
-  font-size: 24px;
   text-align: center;
-  z-index: 1; /* ★修正: 最も背面に配置 */
+  z-index: 1;
 }
 .screen.active {
   display: block;
+}
+
+/* ★修正: 画面内のコンテンツを囲むラッパー */
+.screen-content-wrapper {
+  height: 100vh;
+  overflow-y: auto; /* コンテンツが多い場合はスクロール可能に */
+  box-sizing: border-box;
+  /* ヘッダー(85px)とフッター(150px)が隠れないように余白を設定 */
+  padding-top: 85px;
+  padding-bottom: 150px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 /* ホーム画面の背景 */
 .screen#main-home {
   background: transparent;
 }
-/* 育成・トレーニング画面の背景 */
-.screen#ikusei-home, .screen#training {
+/* 育成・トレーニング・キャラ選択画面の背景 */
+.screen#ikusei-home, .screen#training, .screen#char-select {
   background-color: #fefcf5;
 }
 
@@ -50,13 +59,13 @@ html, body {
   width: 100%;
   max-width: 480px;
   box-sizing: border-box;
-  z-index: 10; /* ★修正: 画面(screen)より手前に表示 */
+  z-index: 10;
 }
 
 /* ===== ヘッダー ===== */
 .game-header {
   top: 45px;
-  padding: 12px;
+  padding: 12px 20px;
   background: transparent;
   display: flex;
   justify-content: space-between;
@@ -82,14 +91,19 @@ html, body {
 .btn.small { width: 70px; height: 70px; cursor: pointer; outline: none; transition: all 0.2s ease-in-out; border-color: #c5e1a5; color: #558b2f; }
 .btn.small.activated { transform: translateY(-20px); background: #fffde7; box-shadow: 0 10px 15px -5px rgba(255, 235, 59, 0.6); }
 
-/* ===== 全画面の表示制御 ===== */
-#content {
-  /* screenを絶対配置にしたため、paddingは不要 */
-}
-
 /* ===== ハンバーガーメニュー関連 ===== */
 .settings-container { position: fixed; top: 0; right: 0; padding: 8px; z-index: 100; }
-#settings-menu, #volume-menu { position: absolute; top: 55px; right: 8px; width: 180px; background: white; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); overflow: hidden; z-index: 99; }
+#settings-menu, #volume-menu {
+  position: absolute;
+  top: 55px;
+  right: 8px;
+  width: 180px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  z-index: 101; /* ★修正: 他のUIより必ず手前に表示 */
+}
 #volume-menu { width: 220px; padding: 16px; }
 .menu-btn { display: block; width: 100%; padding: 12px 16px; font-size: 14px; text-align: left; background: none; border: none; border-bottom: 1px solid #f0f0f0; cursor: pointer; color: #334155; }
 .menu-btn:last-child { border-bottom: none; }
@@ -114,74 +128,26 @@ html, body {
 .nav-btn.active { color: #ff8f00; }
 
 /* ===== キャラクター選択画面 ===== */
-.char-select-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 40px 0;
-}
-.char-card {
-  width: 100px;
-  height: 150px;
-  border: 3px solid #ccc;
-  border-radius: 10px;
-  margin: 0 10px;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  padding: 10px;
-  background-color: #f0f0f0;
-}
-.char-card.selected {
-  border-color: #ff9800;
-  transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(255, 152, 0, 0.5);
-}
-#confirm-char-btn {
-  font-size: 18px;
-  padding: 10px 20px;
-}
+.char-select-container { display: flex; justify-content: center; align-items: center; padding: 20px 0; }
+.char-card { width: 100px; height: 150px; border: 3px solid #ccc; border-radius: 10px; margin: 0 10px; cursor: pointer; transition: all 0.2s; display: flex; justify-content: center; align-items: flex-end; padding: 10px; background-color: #f0f0f0; }
+.char-card.selected { border-color: #ff9800; transform: scale(1.05); box-shadow: 0 0 15px rgba(255, 152, 0, 0.5); }
+#confirm-char-btn { font-size: 18px; padding: 10px 20px; margin-top: 20px; }
 
 /* ===== パラメータバー ===== */
 #parameter-bars {
-  margin-top: -10px;
-  margin-bottom: 20px;
+  /* ★修正: 上下のマージンを整理 */
+  margin: 0;
+  padding-bottom: 10px;
 }
-.param-bar-container {
-  display: flex;
-  align-items: center;
-  margin: 8px 0;
-}
-.param-label {
-  width: 40px;
-  font-size: 14px;
-  color: #555;
-}
-.param-bar {
-  flex-grow: 1;
-  height: 12px;
-  background-color: #e0e0e0;
-  border-radius: 6px;
-  overflow: hidden;
-}
-.param-bar-fill {
-  height: 100%;
-  width: 0%; /* JSで制御 */
-  border-radius: 6px;
-  transition: width 0.3s ease-in-out;
-}
-.param-value {
-  width: 40px;
-  text-align: right;
-  font-size: 14px;
-}
-/* 各パラメータの色 */
-#str-bar { background-color: #ef5350; } /* 赤 */
-#agi-bar { background-color: #42a5f5; } /* 青 */
-#vit-bar { background-color: #66bb6a; } /* 緑 */
-#dex-bar { background-color: #ffee58; } /* 黄 */
+.param-bar-container { display: flex; align-items: center; margin: 8px 0; }
+.param-label { width: 40px; font-size: 14px; color: #5d4037; }
+.param-bar { flex-grow: 1; height: 12px; background-color: #e0e0e0; border-radius: 6px; overflow: hidden; }
+.param-bar-fill { height: 100%; width: 0%; border-radius: 6px; transition: width 0.3s ease-in-out; }
+.param-value { width: 40px; text-align: right; font-size: 14px; }
+#str-bar { background-color: #ef5350; }
+#agi-bar { background-color: #42a5f5; }
+#vit-bar { background-color: #66bb6a; }
+#dex-bar { background-color: #ffee58; }
 
 /* 特殊効果の表示 */
 #buff-display {
