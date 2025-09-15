@@ -2,7 +2,6 @@
 html {
   height: 100vh;
 }
-
 html, body {
   font-family: system-ui, "Noto Sans JP", sans-serif;
   color: #334155;
@@ -11,32 +10,37 @@ html, body {
   padding: 0;
   overscroll-behavior: none;
   font-weight: bold;
-  /* より滑らかで綺麗なグラデーションに変更 */
   background: linear-gradient(to bottom, #b3d7ff, #e6f2ff);
 }
 
-.scroll-area {
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  height: 100%;
-}
-
-/* ===== 各画面のスタイル ===== */
-.screen#main-home {
-  background: transparent; /* bodyのグラデーションを透過させる */
-}
-
-/* 育成・トレーニング画面のスタイル */
-.screen#ikusei-home, .screen#training {
-  background-color: #fefcf5;
-  height: 100vh;
-  box-sizing: border-box;
-  /* ★修正点: 画面全体に広がるように配置 */
+/* ===== 各画面の共通スタイル ===== */
+.screen {
+  /* ★修正: 全ての画面を同じルールで配置し、重なり順の基準にする */
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  display: none;
+  padding: 20px;
+  font-size: 24px;
+  text-align: center;
+  z-index: 1; /* ★修正: 最も背面に配置 */
 }
+.screen.active {
+  display: block;
+}
+
+/* ホーム画面の背景 */
+.screen#main-home {
+  background: transparent;
+}
+/* 育成・トレーニング画面の背景 */
+.screen#ikusei-home, .screen#training {
+  background-color: #fefcf5;
+}
+
 
 /* ===== ヘッダーとフッターの共通スタイル ===== */
 .game-header, .game-footer, .bottom-nav {
@@ -46,6 +50,7 @@ html, body {
   width: 100%;
   max-width: 480px;
   box-sizing: border-box;
+  z-index: 10; /* ★修正: 画面(screen)より手前に表示 */
 }
 
 /* ===== ヘッダー ===== */
@@ -56,7 +61,6 @@ html, body {
   display: flex;
   justify-content: space-between;
   font-size: 16px;
-  /* ★修正点: 区切り線を少し分かりやすく */
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
@@ -65,10 +69,8 @@ html, body {
   bottom: 0;
   padding: 12px;
   background: transparent;
-  /* ★修正点: 区切り線を少し分かりやすく */
   border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
-
 .row { margin: 8px 0; display: flex; justify-content: center; align-items: flex-end; }
 
 /* ===== 育成画面のボタン共通 ===== */
@@ -82,12 +84,10 @@ html, body {
 
 /* ===== 全画面の表示制御 ===== */
 #content {
-  /* ★修正点: screenを絶対配置にしたため、paddingは不要 */
+  /* screenを絶対配置にしたため、paddingは不要 */
 }
-.screen { display: none; padding: 20px; font-size: 24px; text-align: center; }
-.screen.active { display: block; }
 
-/* ===== ハンバーガーメニュー関連 (変更なし) ===== */
+/* ===== ハンバーガーメニュー関連 ===== */
 .settings-container { position: fixed; top: 0; right: 0; padding: 8px; z-index: 100; }
 #settings-menu, #volume-menu { position: absolute; top: 55px; right: 8px; width: 180px; background: white; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); overflow: hidden; z-index: 99; }
 #volume-menu { width: 220px; padding: 16px; }
@@ -103,12 +103,12 @@ html, body {
 .volume-control label { width: 100px; font-size: 14px; color: #334155; }
 .volume-control input[type="range"] { flex-grow: 1; }
 
-/* ===== ホーム画面のコンテンツ (変更なし) ===== */
-.home-content { position: absolute; bottom: 70px; width: 100%; max-width: 480px; left: 50%; transform: translateX(-50%); display: flex; justify-content: space-evenly; }
+/* ===== ホーム画面のコンテンツ ===== */
+.home-content { position: absolute; bottom: 70px; width: 100%; max-width: 480px; left: 50%; transform: translateX(-50%); display: flex; justify-content: space-evenly; z-index: 2; }
 .home-menu-btn { width: 45%; max-width: 200px; padding: 20px; margin: 0; font-size: 20px; font-weight: bold; color: white; background: linear-gradient(135deg, #42a5f5, #1e88e5); border: none; border-radius: 12px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 15px rgba(30, 136, 229, 0.4); }
 .home-menu-btn:active { transform: scale(0.96); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); }
 
-/* ===== ホーム画面下部ナビゲーション (変更なし) ===== */
+/* ===== ホーム画面下部ナビゲーション ===== */
 .bottom-nav { bottom: 0; display: flex; justify-content: space-around; background: #ffffff; padding: 8px 0; border-top: 1px solid #e0e0e0; }
 .nav-btn { background: none; border: none; font-size: 12px; font-weight: bold; color: #90a4ae; padding: 8px 4px; cursor: pointer; transition: color 0.2s; }
 .nav-btn.active { color: #ff8f00; }
