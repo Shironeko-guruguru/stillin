@@ -1,72 +1,118 @@
-html, body {
-  font-family: system-ui, "Noto Sans JP", sans-serif; 
-  background-color: #ffffff; 
-  color: #000000; 
-  overflow: hidden; 
-  height: 100%; 
-  margin: 0 auto; 
-  padding: 0; 
+/* ===== 全体・背景 ===== */
+html,
+body {
+  font-family: system-ui, "Noto Sans JP", sans-serif;
+  /* 明るい空のようなグラデーション背景 */
+  background: linear-gradient(to bottom, #a0d8ef, #ffffff);
+  color: #333;
+  overflow: hidden;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0;
   overscroll-behavior: none;
   font-weight: bold;
-} 
-
-/* スクロールを許可するエリア */ 
-.scroll-area { 
-  overflow-y: auto; /* 縦スクロール可能 */ 
-  -webkit-overflow-scrolling: touch; /* iOSで慣性スクロール */ 
-  height: 100%; /* 必要に応じて高さ指定 */ 
+  min-height: 100vh; /* 画面が短くてもグラデーションが全体に広がるように */
 }
 
+/* スクロールを許可するエリア */
+.scroll-area {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+}
+
+/* 全画面を想定 */
+#content {
+  padding-top: 105px;
+  padding-bottom: 180px;
+}
+
+.screen {
+  display: none;
+  padding: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.screen.active {
+  display: block;
+}
+
+
+/* ===== ヘッダー・フッター系パネル ===== */
+.game-header,
+.game-footer,
+.bottom-nav {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  background: rgba(255, 255, 255, 0.9);
+  box-sizing: border-box;
+  /* パネルを浮かせる影 */
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.game-header {
+  top: 45px;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  color: #333;
+  border-bottom: 1px solid #eee;
+}
+
+.game-footer {
+  bottom: 0;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.bottom-nav {
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0;
+  border-top: 1px solid #eee;
+}
+
+
+/* ===== ホーム画面 ===== */
 .home-content {
-  position: absolute; /* 位置を自由に動かせるようにする */
-  bottom: 70px;       /* 下部のナビゲーションバーの少し上に配置 */
+  position: absolute;
+  bottom: 80px;
   width: 100%;
   max-width: 480px;
   left: 50%;
   transform: translateX(-50%);
-  display: flex;           /* ボタンを横並びにする */
-  justify-content: space-evenly; /* ボタンの間に均等なスペースを空ける */
-  /* 不要になったスタイルを削除 */
-  /* flex-direction, height は削除 */
+  display: flex;
+  justify-content: space-evenly;
 }
 
-/* ホーム画面のメニューボタン */
 .home-menu-btn {
-  width: 45%; /* 横並びになるように幅を調整 */
+  width: 45%;
   max-width: 200px;
   padding: 20px;
-  margin: 0; /* 不要な縦マージンを削除 */
+  margin: 0;
   font-size: 20px;
   font-weight: bold;
   color: white;
-  background: linear-gradient(135deg, #5a7cfa, #8e44ad);
+  /* 明るい青のグラデーション */
+  background: linear-gradient(145deg, #3cabff, #007bff);
   border: none;
-  border-radius: 12px;
+  border-radius: 16px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s, box-shadow 0.1s;
+  /* ボタンをぷっくり見せる影 */
+  box-shadow: 0 4px 0 #0056b3, 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
+/* 押したときにへこむアニメーション */
 .home-menu-btn:active {
-  transform: scale(0.96);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-
-/* 画面下部のナビゲーション */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 480px;
-  display: flex;
-  justify-content: space-around;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 8px 0;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #0056b3, 0 4px 5px rgba(0, 0, 0, 0.2);
 }
 
 .nav-btn {
@@ -74,39 +120,138 @@ html, body {
   border: none;
   font-size: 12px;
   font-weight: bold;
-  color: #888;
+  color: #aaa;
   padding: 8px 4px;
   cursor: pointer;
   transition: color 0.2s;
 }
 
-/* アクティブな（現在の）ページのボタン */
 .nav-btn.active {
-  color: #2962ff;
+  color: #007bff; /* アクティブなボタンの色 */
 }
 
 
+/* ===== 育成画面ボタン ===== */
+.row {
+  margin: 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.btn {
+  border: none;
+  margin: 0 8px;
+  font-weight: bold;
+  font-size: 14px;
+  color: white;
+  border-radius: 16px;
+  padding: 0 10px;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn:active {
+  transform: translateY(2px);
+}
+
+.btn.main {
+  width: 160px;
+  height: 70px;
+  /* 明るい緑のグラデーション */
+  background: linear-gradient(145deg, #34d399, #10b981);
+  box-shadow: 0 4px 0 #059669;
+}
+
+.btn.main:active {
+  box-shadow: 0 2px 0 #059669;
+}
+
+.btn.side {
+  width: 100px;
+  height: 70px;
+  background: linear-gradient(145deg, #f97316, #ea580c);
+  box-shadow: 0 4px 0 #c2410c;
+}
+
+.btn.side:active {
+  box-shadow: 0 2px 0 #c2410c;
+}
+
+.btn.sub {
+  flex: 1;
+  width: 180px;
+  height: 55px;
+  background: linear-gradient(145deg, #9ca3af, #6b7280);
+  box-shadow: 0 4px 0 #4b5563;
+}
+.btn.sub:active {
+  box-shadow: 0 2px 0 #4b5563;
+}
+
+.btn.small {
+  width: 70px;
+  height: 70px;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  background: #f3f3f3;
+  color: #333;
+  box-shadow: 0 4px 0 #ccc;
+}
+.btn.small:active {
+  box-shadow: 0 2px 0 #ccc;
+}
+.btn.small.activated {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+  background: #fff;
+}
+
+
+/* ===== ハンバーガーメニュー系 ===== */
 .settings-container {
   position: fixed;
   top: 0;
   right: 0;
   padding: 8px;
-  z-index: 100; /* 他の要素より手前に表示 */
+  z-index: 100;
 }
 
-#settings-menu {
+.settings-btn {
+  background: rgba(255,255,255,0.5);
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.settings-btn:hover {
+  background: rgba(255,255,255,0.8);
+}
+
+.settings-btn svg {
+  display: block;
+  width: 28px;
+  height: 28px;
+  fill: #555;
+}
+
+#settings-menu,
+#volume-menu {
   position: absolute;
-  top: 55px; /* アイコンの少し下に表示 */
+  top: 55px;
   right: 8px;
-  width: 180px;
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  overflow: hidden; /* 角丸をボタンにも適用 */
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  padding: 8px;
   z-index: 99;
 }
 
-/* メニュー内のボタン */
+#settings-menu { width: 180px; }
+#volume-menu { width: 220px; padding: 16px; }
+
 .menu-btn {
   display: block;
   width: 100%;
@@ -115,35 +260,12 @@ html, body {
   text-align: left;
   background: none;
   border: none;
-  border-bottom: 1px solid #f0f0f0; /* ボタンの区切り線 */
+  border-radius: 8px;
   cursor: pointer;
 }
 
-/* 最後のボタンの下線は消す */
-.menu-btn:last-child {
-  border-bottom: none;
-}
-
-/* マウスを乗せたときの色 */
 .menu-btn:hover {
-  background-color: #f5f5f5;
-}
-
-/* メニューを非表示にするためのクラス */
-.hidden {
-  display: none;
-}
-
-#volume-menu {
-  position: absolute;
-  top: 55px;
-  right: 8px;
-  width: 220px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  padding: 16px;
-  z-index: 99;
+  background-color: #f0f6ff;
 }
 
 .volume-control {
@@ -151,143 +273,8 @@ html, body {
   align-items: center;
   margin-bottom: 12px;
 }
+.volume-control:last-child { margin-bottom: 0; }
+.volume-control label { width: 100px; font-size: 14px; }
+.volume-control input[type="range"] { flex-grow: 1; }
 
-.volume-control:last-child {
-  margin-bottom: 0;
-}
-
-.volume-control label {
-  width: 100px; /* ラベルの幅を固定 */
-  font-size: 14px;
-}
-
-.volume-control input[type="range"] {
-  flex-grow: 1; /* 残りの幅をすべて使用 */
-}
-
-.settings-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  opacity: 0.6; /* 少し薄くして見た目を調整 */
-  transition: opacity 0.2s;
-}
-
-.settings-btn:hover {
-  opacity: 1; /* マウスカーソルを乗せたら濃くする */
-}
-
-.settings-btn svg {
-  display: block; /* ボタン内でのズレを防止 */
-  width: 28px;
-  height: 28px;
-  fill: #333; /* アイコンの色 */
-}
-
-/* ===== ヘッダー配置 ===== */
-.game-header {
-  position: fixed;
-  top: 45px; /* 表示位置を下にずらす (変更) */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 480px;
-  padding: 12px;
-  box-sizing: border-box;
-  background: rgba(255, 255, 255, 0.85);
-  display: flex;
-  justify-content: space-between;
-  font-size: 16px;
-  color: #333;
-}
-
-
-/* ===== フッター配置 ===== */
-.game-footer {
-  position: fixed;
-  bottom: 0;
-  left: 50%; /* ① 左端を画面の真ん中に移動 */
-  transform: translateX(-50%); /* ② 要素の幅の半分だけ左に戻す */
-  width: 100%;
-  max-width: 480px;
-  padding: 12px;
-  box-sizing: border-box;
-  background: rgba(255, 255, 255, 0.85); /* 半透明背景で浮かせる感じ */
-}
-
-/* 行 */
-.row {
-  margin: 8px 0;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-}
-
-/* ===== ボタン共通 ===== */
-.btn {
-  border: none;
-  margin: 0 8px;
-  font-weight: bold;
-  font-size: 14px;
-  color: #333;
-  background: #f3f3f3;
-  transition: transform 0.5s;
-  border-radius: 30px; /* 楕円 */
-  padding: 0 10px; /* 文字が窮屈にならないよう余白 */
-}
-
-/* 押したときのアニメーション */
-.btn:active {
-  transform: scale(0.95);
-}
-
-/* ===== 上段ボタン ===== */
-.btn.side {
-  width: 100px;
-  height: 70px;
-}
-
-.btn.main {
-  width: 160px;
-  height: 70px;
-  font-weight: bold;
-}
-
-/* ===== 下段ボタン ===== */
-.btn.sub {
-  flex: 1;
-  width: 180px;
-  height: 55px;
-}
-
-/*=====トレーニング時=====*/
-.btn.small {
-  width: 70px;
-  height: 70px;
-  cursor: pointer;
-  outline: none;
-  transition: all 0.1s ease-in-out;
-}
-
-.btn.small.activated {
-  transform: translateY(-20px);
-}
-
-/* 全画面を想定 */
-#content {
-  padding-top: 105px; /* ヘッダー分の余白*/
-  padding-bottom: 180px; /* フッター分の余白 */
-}
-
-.screen {
-  display: none;          /* デフォルトは非表示 */
-  padding: 20px;
-  font-size: 24px;
-  text-align: center;
-}
-
-/* 表示する画面 */
-.screen.active {
-  display: block;
-}
+.hidden { display: none; }
