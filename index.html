@@ -34,33 +34,48 @@ if ("serviceWorker" in navigator) {
     <div class="status">残りターン: <span id="turn-value">24</span></div>
   </div>
   <div id="content">
-    <div class="screen active" id="ikusei-home">
-      <div class="game-footer"> 
-        <div class="row top-row"> 
-        <button class="btn side">お休み</button> 
-        <button class="btn main" onclick="showScreen('training')">トレーニング</button> 
-        <button class="btn side">スキル</button> 
-        </div>
-        <div class="row bottom-row"> 
-        <button class="btn sub">アイテム</button> 
-        <button class="btn sub">お出掛け</button> 
-        </div>
+  <div class="screen" id="main-home">
+    <div class="home-content">
+      <button class="home-menu-btn">ストーリー</button>
+      <button class="home-menu-btn" onclick="showScreen('ikusei-home')">育成</button>
+    </div>
+
+    <div class="bottom-nav">
+      <button class="nav-btn">キャラ</button>
+      <button class="nav-btn">タスク</button>
+      <button class="nav-btn active">ホーム</button>
+      <button class="nav-btn">ガチャ</button>
+      <button class="nav-btn">連携</button>
+    </div>
+  </div>
+  <div class="screen active" id="ikusei-home">
+    <div class="game-footer">
+      <div class="row top-row">
+        <button class="btn side">お休み</button>
+        <button class="btn main" onclick="showScreen('training')">トレーニング</button>
+        <button class="btn side">スキル</button>
       </div>
-    </div> 
-    <div class="screen" id="training">
-      <div class="game-footer"> 
-        <div class="row top-row"> 
-        <button class="btn small">STR</button> 
-        <button class="btn small">AGI</button> 
-        <button class="btn small">VIT</button>
-        <button class="btn small">DEX</button> 
-        </div>
-        <div class="row bottom-row"> 
-        <button class="btn main" onclick="showScreen('ikusei-home')">もどる</button>
-        </div>
+      <div class="row bottom-row">
+        <button class="btn sub">アイテム</button>
+        <button class="btn sub">お出掛け</button>
       </div>
     </div>
-  </div> 
+  </div>
+
+  <div class="screen" id="training">
+    <div class="game-footer">
+      <div class="row top-row">
+        <button class="btn small">STR</button>
+        <button class="btn small">AGI</button>
+        <button class="btn small">VIT</button>
+        <button class="btn small">DEX</button>
+      </div>
+      <div class="row bottom-row">
+        <button class="btn main" onclick="showScreen('ikusei-home')">もどる</button>
+      </div>
+    </div>
+  </div>
+</div> 
 </div>
 <script>
 function showScreen(id) {
@@ -69,7 +84,7 @@ function showScreen(id) {
   });
   document.getElementById(id).classList.add("active");
 }
-showScreen("ikusei-home");
+showScreen("main-home");
 
 const smallButtons = document.querySelectorAll('.btn.small');
 smallButtons.forEach(button => {
@@ -97,7 +112,7 @@ settingsBtn.addEventListener('click', () => {
 menuButtons.forEach(button => {
   button.addEventListener('click', () => {
     // 1. ホーム画面に移動する
-    showScreen('ikusei-home');
+    showScreen('main-home');
     // 2. メニューを非表示にする
     settingsMenu.classList.add('hidden');
   });

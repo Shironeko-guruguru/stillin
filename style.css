@@ -17,6 +17,70 @@ html, body {
   height: 100%; /* 必要に応じて高さ指定 */ 
 }
 
+.home-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* ボタンを縦に並べる */
+  height: calc(100vh - 280px); /* ヘッダーとフッターを除いた高さいっぱいに広げる */
+}
+
+/* ホーム画面のメニューボタン */
+.home-menu-btn {
+  width: 80%;
+  max-width: 320px;
+  padding: 20px;
+  margin: 15px 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(135deg, #5a7cfa, #8e44ad);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.home-menu-btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* 画面下部のナビゲーション */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  justify-content: space-around;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px 0;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  font-size: 12px;
+  font-weight: bold;
+  color: #888;
+  padding: 8px 4px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+/* アクティブな（現在の）ページのボタン */
+.nav-btn.active {
+  color: #2962ff;
+}
+
+
 .settings-container {
   position: fixed;
   top: 0;
