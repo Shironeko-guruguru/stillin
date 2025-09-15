@@ -1,3 +1,118 @@
+/* ===== 全体の基本スタイル ===== */
+html {
+  height: 100vh;
+}
+html, body {
+  font-family: system-ui, "Noto Sans JP", sans-serif;
+  color: #334155;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 0;
+  overscroll-behavior: none;
+  font-weight: bold;
+  background: linear-gradient(to bottom, #b3d7ff, #e6f2ff);
+}
+
+/* ===== 各画面の共通スタイル ===== */
+.screen {
+  /* ★修正: 全ての画面を同じルールで配置し、重なり順の基準にする */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  display: none;
+  padding: 20px;
+  font-size: 24px;
+  text-align: center;
+  z-index: 1; /* ★修正: 最も背面に配置 */
+}
+.screen.active {
+  display: block;
+}
+
+/* ホーム画面の背景 */
+.screen#main-home {
+  background: transparent;
+}
+/* 育成・トレーニング画面の背景 */
+.screen#ikusei-home, .screen#training {
+  background-color: #fefcf5;
+}
+
+
+/* ===== ヘッダーとフッターの共通スタイル ===== */
+.game-header, .game-footer, .bottom-nav {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  box-sizing: border-box;
+  z-index: 10; /* ★修正: 画面(screen)より手前に表示 */
+}
+
+/* ===== ヘッダー ===== */
+.game-header {
+  top: 45px;
+  padding: 12px;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* ===== 育成画面フッター ===== */
+.game-footer {
+  bottom: 0;
+  padding: 12px;
+  background: transparent;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+.row { margin: 8px 0; display: flex; justify-content: center; align-items: flex-end; }
+
+/* ===== 育成画面のボタン共通 ===== */
+.btn { border: 2px solid #bcaaa4; margin: 0 8px; font-weight: bold; font-size: 14px; color: #5d4037; background: #ffffff; transition: transform 0.2s, box-shadow 0.2s; border-radius: 30px; padding: 0 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.btn:active { transform: scale(0.95); box-shadow: none; }
+.btn.main { width: 160px; height: 70px; font-weight: bold; color: white; border: none; background: linear-gradient(135deg, #ffb74d, #ff9800); box-shadow: 0 4px 8px rgba(255, 152, 0, 0.4); }
+.btn.side { width: 100px; height: 70px; }
+.btn.sub { flex: 1; width: 180px; height: 55px; }
+.btn.small { width: 70px; height: 70px; cursor: pointer; outline: none; transition: all 0.2s ease-in-out; border-color: #c5e1a5; color: #558b2f; }
+.btn.small.activated { transform: translateY(-20px); background: #fffde7; box-shadow: 0 10px 15px -5px rgba(255, 235, 59, 0.6); }
+
+/* ===== 全画面の表示制御 ===== */
+#content {
+  /* screenを絶対配置にしたため、paddingは不要 */
+}
+
+/* ===== ハンバーガーメニュー関連 ===== */
+.settings-container { position: fixed; top: 0; right: 0; padding: 8px; z-index: 100; }
+#settings-menu, #volume-menu { position: absolute; top: 55px; right: 8px; width: 180px; background: white; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); overflow: hidden; z-index: 99; }
+#volume-menu { width: 220px; padding: 16px; }
+.menu-btn { display: block; width: 100%; padding: 12px 16px; font-size: 14px; text-align: left; background: none; border: none; border-bottom: 1px solid #f0f0f0; cursor: pointer; color: #334155; }
+.menu-btn:last-child { border-bottom: none; }
+.menu-btn:hover { background-color: #f5f5f5; }
+.settings-btn { background: none; border: none; cursor: pointer; padding: 8px; opacity: 0.6; transition: opacity 0.2s; }
+.settings-btn:hover { opacity: 1; }
+.settings-btn svg { display: block; width: 28px; height: 28px; fill: #334155; }
+.hidden { display: none; }
+.volume-control { display: flex; align-items: center; margin-bottom: 12px; }
+.volume-control:last-child { margin-bottom: 0; }
+.volume-control label { width: 100px; font-size: 14px; color: #334155; }
+.volume-control input[type="range"] { flex-grow: 1; }
+
+/* ===== ホーム画面のコンテンツ ===== */
+.home-content { position: absolute; bottom: 70px; width: 100%; max-width: 480px; left: 50%; transform: translateX(-50%); display: flex; justify-content: space-evenly; z-index: 2; }
+.home-menu-btn { width: 45%; max-width: 200px; padding: 20px; margin: 0; font-size: 20px; font-weight: bold; color: white; background: linear-gradient(135deg, #42a5f5, #1e88e5); border: none; border-radius: 12px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 15px rgba(30, 136, 229, 0.4); }
+.home-menu-btn:active { transform: scale(0.96); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); }
+
+/* ===== ホーム画面下部ナビゲーション ===== */
+.bottom-nav { bottom: 0; display: flex; justify-content: space-around; background: #ffffff; padding: 8px 0; border-top: 1px solid #e0e0e0; }
+.nav-btn { background: none; border: none; font-size: 12px; font-weight: bold; color: #90a4ae; padding: 8px 4px; cursor: pointer; transition: color 0.2s; }
+.nav-btn.active { color: #ff8f00; }
+
 /* ===== キャラクター選択画面 ===== */
 .char-select-container {
   display: flex;
