@@ -134,6 +134,37 @@ html, body {
   display: none;
 }
 
+#volume-menu {
+  position: absolute;
+  top: 55px;
+  right: 8px;
+  width: 220px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 16px;
+  z-index: 99;
+}
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.volume-control:last-child {
+  margin-bottom: 0;
+}
+
+.volume-control label {
+  width: 100px; /* ラベルの幅を固定 */
+  font-size: 14px;
+}
+
+.volume-control input[type="range"] {
+  flex-grow: 1; /* 残りの幅をすべて使用 */
+}
+
 .settings-btn {
   background: none;
   border: none;
